@@ -1,0 +1,151 @@
+ {
+  "itemgroup.flavored_group": "Flavored",
+
+  "item.flavored.oil": "Olej",
+
+
+
+  "item.flavored.tomato": "Pomidor",
+  "item.flavored.tomato_seeds": "Nasiona Pomidorów",
+
+  "item.flavored.garlic": "Czosnek",
+
+  "item.flavored.pumpkin_slice": "Plaster Dyni",
+
+  "item.flavored.cheese_slice": "Plaster Sera",
+
+
+  "block.flavored.boiler": "Kocioł Warzelny",
+
+  "item.flavored.glazed_chicken": "Glazurowany Kuczak",
+  "item.flavored.glazed_mutton": "Glazurowana Baranina",
+  "item.flavored.glazed_beef": "Glazurowana Wołowina",
+  "item.flavored.glazed_pork": "Glazurowana Wieprzownia",
+
+  "item.flavored.candied_apple": "Kandyzowane Jabłko",
+
+
+  "item.flavored.rosemary": "Rozmaryn",
+
+  "block.flavored.plenty": "Kosz Obfitości",
+
+
+  "item.flavored.caramel": "Karamel",
+
+
+
+  "block.flavored.cauliflower": "Kalafior",
+  "block.flavored.carved_cauliflower": "Rzeźbiony Kalafior",
+  "item.flavored.cauliflower_seeds": "Nasiona Kalafiora",
+  "block.flavored.fermenter": "Bimbrownia",
+  "block.flavored.plant_pot": "Donica",
+  "block.flavored.range": "Kuchenka",
+
+
+
+  "item.flavored.cauliflower_curd": "Różyczka Kalafiora",
+
+  "block.flavored.oven": "Piekarnik",
+
+
+  "item.flavored.glow_berry_muffin": "Muffinka z Swiecących Jagód",
+  "item.flavored.sweet_berry_muffin": "Muffinka z Słodkich Jagód ",
+
+  "item.flavored.cauliflower_soup": "Kupa Kalafiorowa",
+  "item.flavored.roasted_cauliflower_curd": "Pieczona Różyczka Kalafiora ",
+  
+
+
+  "block.flavored.garlic_bread": "Bułka Czosnkowa",
+
+  "item.flavored.flour": "Mąka",
+
+  "item.flavored.delicacy_pottery_sherd": "Odłamek ceramiki „Delikates”",
+  "item.flavored.refresh_pottery_sherd": "Odłamek ceramiki „Orzeżwienie”",
+
+
+  "item.flavored.pasta": "Makaron",
+
+  "block.flavored.cheese": "Ser",
+  "item.flavored.pizza_slice": "Kawałek Pizzy",
+
+  "block.flavored.pizza": "Pizza",
+  "block.flavored.pudding": "Pudding",
+
+  "block.flavored.crate": "Skrzynka",
+
+
+  "item.flavored.spaghetti": "Spaghetti",
+  "item.flavored.carbonara": "Carbonara",
+  "item.flavored.salad": "Sałatka",
+
+  "entity.minecraft.villager.chef": "Szef",
+
+
+  "block.flavored.carved_melon": "Rzeźbiony Melon",
+
+  "item.flavored.chorus_cocktail": "Chorus Fruit Cocktail",
+  "item.flavored.fig_cocktail": "Fig Cocktail",
+  "item.flavored.sweet_berry_cocktail": "Sweet Berry Cocktail",
+  "item.flavored.glow_berry_cocktail": "Glow Berry Cocktail",
+  "item.flavored.cider": "Cider",
+  "item.flavored.malt": "Malt",
+  "item.flavored.hot_cocoa": "Hot Cocoa",
+  "item.flavored.pumpkin_latte": "Pumpkin Latte",
+  "item.flavored.tea": "Tea",
+
+  "item.flavored.spinach": "Spinach",
+  "item.flavored.spinach_seeds": "Spinach Seeds",
+
+  "item.flavored.fig": "Fig",
+
+  "item.flavored.ancient_boat": "Ancient Boat",
+  "item.flavored.ancient_chest_boat": "Ancient Chest Boat",
+
+  "block.flavored.ancient_log": "Ancient Log",
+  "block.flavored.ancient_wood": "Ancient Wood",
+  "block.flavored.stripped_ancient_log": "Stripped Ancient Log",
+  "block.flavored.stripped_ancient_wood": "Stripped Ancient Wood",
+  "block.flavored.ancient_button": "Ancient Button",
+  "block.flavored.ancient_planks": "Ancient Planks",
+  "block.flavored.ancient_fence": "Ancient Fence",
+  "block.flavored.ancient_fence_gate": "Ancient Fence Gate",
+  "block.flavored.ancient_slab": "Ancient Slab",
+  "block.flavored.ancient_stairs": "Ancient Stairs",
+
+  "block.flavored.ancient_standing_sign": "Ancient Standing Sign",
+  "block.flavored.ancient_wall_sign": "Ancient Wall Sign",
+
+  "block.flavored.ancient_hanging_sign": "Ancient Hanging Sign",
+  "block.flavored.ancient_wall_hanging_sign": "Ancient Wall Hanging Sign",
+  "block.flavored.ancient_pressure_plate": "Ancient Pressure Plate",
+  "block.flavored.ancient_door": "Ancient Door",
+  "block.flavored.ancient_trapdoor": "Ancient Trapdoor",
+  "block.flavored.ancient_leaves": "Ancient Leaves",
+  "block.flavored.flowering_ancient_leaves": "Flowering Ancient Leaves",
+
+  "block.flavored.ancient_sapling": "Ancient Sapling",
+
+  "block.flavored.fig_crate": "Fig Crate",
+  "block.flavored.apple_crate": "Apple Crate",
+  "block.flavored.carrot_crate": "Carrot Crate",
+  "block.flavored.potato_crate": "Potato Crate",
+  "block.flavored.beetroot_crate": "Beetroot Crate",
+  "block.flavored.tomato_crate": "Tomato Crate",
+  "block.flavored.spinach_crate": "Spinach Crate",
+  "block.flavored.sweet_berry_crate": "Sweet Berry Crate",
+  "block.flavored.glow_berry_crate": "Glow Berry Crate",
+  "block.flavored.chorus_crate": "Chorus Fruit Crate",
+  "block.flavored.garlic_crate": "Garlic Crate",
+  "block.flavored.rosemary_crate": "Rosemary Crate",
+
+
+
+  "item.flavored.fruit_salad": "Fruit Salad",
+  "item.flavored.mashed_potatoes": "Mashed Potatoes",
+  "item.flavored.grilled_vegetables": "Grilled Vegetables",
+  "item.flavored.alfredo": "Alfredo"
+
+
+
+}

@@ -25,6 +25,8 @@ public class FermenterScreenHandler extends ScreenHandler {
     public FermenterScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
                 new ArrayPropertyDelegate(4));
+
+
     }
 
     public FermenterScreenHandler(int syncId, PlayerInventory playerInventory,
@@ -40,7 +42,6 @@ public class FermenterScreenHandler extends ScreenHandler {
         this.addSlot(new FlavoredResultSlot(inventory, 1, 116, 35));
         this.addSlot(new FlavoredFermentingSlot(inventory, 2, 29, 35));
         this.addSlot(new FlavoredLiquidSlot(inventory, 3, 56, 59));
-
 
 
 

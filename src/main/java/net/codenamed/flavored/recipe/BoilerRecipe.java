@@ -44,15 +44,25 @@ public class BoilerRecipe implements Recipe<SimpleInventory> {
                             }
                         }
 
-                        if (recipeItems.size() == 3 && size == 4) {
-                            result = recipeItems.get(1).test(inventory.getStack(j))
+                        if (recipeItems.size() == 4 && size == 5) {
+                            result = recipeItems.get(0).test(inventory.getStack(i))
+                                    && recipeItems.get(1).test(inventory.getStack(j))
                                     && recipeItems.get(2).test(inventory.getStack(k))
                                     && recipeItems.get(3).test(inventory.getStack(l));
                         }
-                        else if (recipeItems.size() == 2 && size == 3) {
-                            result = recipeItems.get(1).test(inventory.getStack(j))
+                        if (recipeItems.size() == 3 && size == 4) {
+                            result = recipeItems.get(0).test(inventory.getStack(i))
+                                    && recipeItems.get(1).test(inventory.getStack(j))
                                     && recipeItems.get(2).test(inventory.getStack(k));
                         }
+                        else if (recipeItems.size() == 2 && size == 3) {
+                            result = recipeItems.get(0).test(inventory.getStack(i))
+                                    && recipeItems.get(1).test(inventory.getStack(j));
+                        }
+                        else if (recipeItems.size() == 1 && size == 2) {
+                            result = recipeItems.get(0).test(inventory.getStack(i));
+                        }
+
 
                         if (result) {
                             return  true;

@@ -13,6 +13,10 @@ import net.minecraft.util.Identifier;
 import net.codenamed.flavored.Flavored;
 
 public class FlavoredScreenHandlers {
+
+    public static final ScreenHandlerType<BoilerScreenHandler> BOILER_SCREEN_HANDLER =
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(Flavored.MOD_ID, "boiling"),
+                    new ExtendedScreenHandlerType<>(BoilerScreenHandler::new));
     public static final ScreenHandlerType<FermenterScreenHandler> FERMENTER_SCREEN_HANDLER =
             Registry.register(Registries.SCREEN_HANDLER, new Identifier(Flavored.MOD_ID, "fermenting"),
                     new ExtendedScreenHandlerType<>(FermenterScreenHandler::new));
@@ -25,9 +29,8 @@ public class FlavoredScreenHandlers {
             ScreenHandlerRegistry.registerSimple(new Identifier(Flavored.MOD_ID, "frying"),
                     RangeScreenHandler::new);
 
-    public static ScreenHandlerType<BoilerScreenHandler> BOILER_SCREEN_HANDLER =
-            ScreenHandlerRegistry.registerSimple(new Identifier(Flavored.MOD_ID, "boiler"),
-                    BoilerScreenHandler::new);
+
+
 
     public static void registerScreenHandlers() {
         Flavored.LOGGER.info("Registering Screen Handlers for " + Flavored.MOD_ID);

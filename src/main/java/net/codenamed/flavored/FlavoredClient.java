@@ -35,11 +35,11 @@ public class FlavoredClient implements ClientModInitializer {
 
 
 
+        HandledScreens.register(FlavoredScreenHandlers.BOILER_SCREEN_HANDLER, BoilerScreen::new);
 
         HandledScreens.register(FlavoredScreenHandlers.FERMENTER_SCREEN_HANDLER, FermenterScreen::new);
         HandledScreens.register(FlavoredScreenHandlers.OVEN_SCREEN_HANDLER, OvenScreen::new);
         HandledScreens.register(FlavoredScreenHandlers.RANGE_SCREEN_HANDLER, RangeScreen::new);
-        HandledScreens.register(FlavoredScreenHandlers.BOILER_SCREEN_HANDLER, BoilerScreen::new);
 
 
         BlockEntityRendererFactories.register(FlavoredBlockEntities.RANGE_BLOCK_ENTITY, RangeBlockEntityRenderer::new);

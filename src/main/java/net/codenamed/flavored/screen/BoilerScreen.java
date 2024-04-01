@@ -10,9 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class BoilerScreen extends HandledScreen<BoilerScreenHandler> {
-    private static final Identifier TEXTURE =
-            new Identifier(Flavored.MOD_ID, "textures/gui/boiler.png");
-
+    private static final Identifier TEXTURE = new Identifier(Flavored.MOD_ID, "textures/gui/boiler.png");
 
     public BoilerScreen(BoilerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -34,16 +32,14 @@ public class BoilerScreen extends HandledScreen<BoilerScreenHandler> {
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
+        renderProgressArrow(context, x, y);
+    }
 
+    private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
             context.drawTexture(TEXTURE, x + 84, y + 20, 176, 16, handler.getScaledProgress(), 16);
-        }
 
-        if(handler.hasFuel()) {
-            context.drawTexture(TEXTURE, x + 46, y + 38 + 14 - handler.getScaledFuelProgress(), 176,
-                    14 - handler.getScaledFuelProgress(), 14, handler.getScaledFuelProgress());
         }
-
     }
 
     @Override

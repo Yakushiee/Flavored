@@ -41,6 +41,8 @@ public class FlavoredItemGroup {
                         entries.add(FlavoredBlocks.PLANT_POT);
                         entries.add(FlavoredBlocks.FERMENTER);
                         entries.add(FlavoredBlocks.OVEN);
+                        entries.add(FlavoredBlocks.RANGE);
+                        entries.add(FlavoredBlocks.BOILER);
                         entries.add(FlavoredItems.FLOUR);
                         entries.add(FlavoredBlocks.CHEESE);
                         entries.add(FlavoredItems.CHEESE_SLICE);

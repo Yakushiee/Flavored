@@ -1,5 +1,6 @@
 package net.codenamed.flavored.block.custom;
 
+import net.codenamed.flavored.block.entity.FermenterBlockEntity;
 import net.codenamed.flavored.block.entity.OvenBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -10,6 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.Items;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
@@ -35,6 +38,8 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public static final IntProperty WATER = IntProperty.of("water", 0, 3);
+
+    public  static  final  int MAX_WATER = 3;
 
 
     public BoilerBlock(Settings settings) {
@@ -97,22 +102,29 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos,
                               PlayerEntity player, Hand hand, BlockHitResult hit) {
+        BlockEntity b = world.getBlockEntity(pos);
+
+
         if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-
-            if (player.getStackInHand(hand).getItem() == Items.WATER_BUCKET || player.getStackInHand(hand).getItem() == Items.POTION) {
-                world.setBlockState(pos, state.with(WATER, state.get(WATER) + 1));
-
-                return ActionResult.SUCCESS;
-            }
+            NamedScreenHandlerFactory screenHandlerFactory = ((BoilerBlockEntity) world.getBlockEntity(pos));
 
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
             }
-
-
-
         }
+
+            if (player.getStackInHand(hand).getItem() == Items.WATER_BUCKET || player.getStackInHand(hand).getItem() == Items.POTION && state.get(WATER) < 2 ) {
+                world.setBlockState(pos, state.with(WATER, state.get(WATER) + 1));
+                world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 0.2F, 1.5F);
+
+                if (b instanceof BoilerBlockEntity) {
+                    ((BoilerBlockEntity) b).setLiquid(state.get(WATER));
+
+                    return ActionResult.SUCCESS;
+
+                }
+
+            }
 
         return ActionResult.SUCCESS;
     }

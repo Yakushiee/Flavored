@@ -1,14 +1,16 @@
 package net.codenamed.flavored.screen;
 
 
+import net.codenamed.flavored.block.entity.BoilerBlockEntity;
 import net.codenamed.flavored.registry.FlavoredScreenHandlers;
-import net.codenamed.flavored.slot.FlavoredFuelSlot;
 import net.codenamed.flavored.slot.FlavoredResultSlot;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -16,61 +18,64 @@ import net.minecraft.screen.slot.Slot;
 
 public class BoilerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-
     private final PropertyDelegate propertyDelegate;
+    public final BoilerBlockEntity blockEntity;
 
-    public BoilerScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(5), new ArrayPropertyDelegate(5));
+    public BoilerScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
+                new ArrayPropertyDelegate(6));
     }
 
-
     public BoilerScreenHandler(int syncId, PlayerInventory playerInventory,
-                               Inventory inventory, PropertyDelegate delegate) {
+                                  BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
         super(FlavoredScreenHandlers.BOILER_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 5);
-        this.inventory = inventory;
+        checkSize(((Inventory) blockEntity), 6);
+        this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
-        this.propertyDelegate = delegate;
+        this.propertyDelegate = arrayPropertyDelegate;
+        this.blockEntity = ((BoilerBlockEntity) blockEntity);
 
-        //
-        this.addSlot(new FlavoredFuelSlot(inventory, 0, 45, 54));
-        this.addSlot(new Slot(inventory, 1, 27, 19));
-        this.addSlot(new Slot(inventory, 2, 45, 19));
-        this.addSlot(new Slot(inventory, 3, 63, 19));
-        this.addSlot(new FlavoredResultSlot(inventory, 4, 127, 20));
+        this.addSlot(new Slot(inventory, 0, 17, 19));
+        this.addSlot(new FlavoredResultSlot(inventory, 1, 127, 20));
+        this.addSlot(new Slot(inventory, 2, 35, 19));
+        this.addSlot(new Slot(inventory, 3, 53, 19));
+        this.addSlot(new Slot(inventory, 4, 71, 19));
+        this.addSlot(new Slot(inventory, 5, 17, 44));
+
+
+
+
+
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
 
-        addProperties(delegate);
+        addProperties(arrayPropertyDelegate);
     }
+
 
     public boolean isCrafting() {
         return propertyDelegate.get(0) > 0;
     }
 
-    public boolean hasFuel() {
-        return propertyDelegate.get(2) > 0;
-    }
-
     public int getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
-        int maxProgress = this.propertyDelegate.get(1);
-        int progressArrowSize = 26;
+        int maxProgress = this.propertyDelegate.get(1);  // Max Progress
+        int progressArrowSize = 26; // This is the width in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    public int getScaledFuelProgress() {
-        int fuelProgress = this.propertyDelegate.get(2);
-        int maxFuelProgress = this.propertyDelegate.get(3);
-        int fuelProgressSize = 14;
+    public int getScaledWaterProgress() {
 
-        return maxFuelProgress != 0 ? (int)(((float)fuelProgress / (float)maxFuelProgress) * fuelProgressSize) : 0;
+        int progress = this.blockEntity.getLiquid();
+        int maxProgress = 3;
+        int progressSize = 3;
+
+        return maxProgress != 0 ? (int)(((float)progress / (float)maxProgress) * progressSize) : 0;
     }
 
-
-
+    @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
@@ -100,6 +105,9 @@ public class BoilerScreenHandler extends ScreenHandler {
         return this.inventory.canPlayerUse(player);
     }
 
+    public  boolean hasWater() {
+        return this.blockEntity.getLiquid() > 0;
+    }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {

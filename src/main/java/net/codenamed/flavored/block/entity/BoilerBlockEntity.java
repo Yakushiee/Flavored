@@ -1,14 +1,13 @@
 package net.codenamed.flavored.block.entity;
 
 import net.codenamed.flavored.block.custom.BoilerBlock;
-import net.codenamed.flavored.block.custom.FermenterBlock;
-import net.codenamed.flavored.recipe.FermenterRecipe;
 import net.codenamed.flavored.recipe.OvenRecipe;
 import net.codenamed.flavored.registry.FlavoredBlockEntities;
 import net.codenamed.flavored.screen.BoilerScreenHandler;
 import net.codenamed.flavored.screen.FermenterScreenHandler;
 import net.codenamed.flavored.screen.OvenScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,26 +33,28 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
+public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
 
-    private static final int INPUT_SLOT = 0;
+    private static final int INPUT_SLOT1 = 0;
     private static final int OUTPUT_SLOT = 1;
+    private static final int INPUT_SLOT2 = 2;
+    private static final int INPUT_SLOT3 = 3;
+    private static final int INPUT_SLOT4 = 4;
 
-    private static final int FERMENTING_SLOT = 2;
+    private static final int BOWL_SLOT = 5;
 
-    private static final int LIQUID_SLOT = 3;
-
-    private static final int BOTTLE_SLOT = 4;
 
 
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
+    private  int liquid = 0;
     private int maxProgress = 768;
 
     public BoilerBlockEntity(BlockPos pos, BlockState state) {
         super(FlavoredBlockEntities.BOILER_BLOCK_ENTITY, pos, state);
+
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -74,7 +75,7 @@ public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandler
 
             @Override
             public int size() {
-                return 5;
+                return 6;
             }
         };
     }
@@ -91,11 +92,6 @@ public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandler
         return inventory;
     }
 
-    public boolean hasWater() {
-
-        return  this.getStack(LIQUID_SLOT).getItem() == Items.WATER_BUCKET;
-    }
-
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
@@ -103,6 +99,15 @@ public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandler
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("boiler.progress", progress);
     }
+
+    public  void  setLiquid(int l) {
+        this.liquid = l;
+    }
+
+    public  int  getLiquid() {
+        return this.liquid;
+    }
+
 
     @Override
     public void readNbt(NbtCompound nbt) {
@@ -148,11 +153,15 @@ public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandler
     private void craftItem() {
         Optional<RecipeEntry<BoilerRecipe>> recipe = getCurrentRecipe();
 
-        this.removeStack(INPUT_SLOT, 1);
-        this.removeStack(FERMENTING_SLOT, 1);
-        this.removeStack(LIQUID_SLOT, 1);
-        this.removeStack(BOTTLE_SLOT, 1);
-        this.setStack(LIQUID_SLOT, Items.BUCKET.getDefaultStack());
+        this.removeStack(INPUT_SLOT1, 1);
+        this.removeStack(INPUT_SLOT2, 1);
+        this.removeStack(INPUT_SLOT3, 1);
+        this.removeStack(INPUT_SLOT4, 1);
+
+        this.removeStack(BOWL_SLOT, 1);
+
+        this.liquid--;
+
 
 
 
@@ -171,7 +180,7 @@ public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandler
     private boolean hasRecipe() {
         Optional<RecipeEntry<BoilerRecipe>> recipe = getCurrentRecipe();
 
-        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+        return this.liquid > 0 && this.getStack(BOWL_SLOT).getItem() == Items.BOWL && recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
@@ -194,5 +203,10 @@ public class BoilerBlockEntity extends BlockEntity implements NamedScreenHandler
 
     private boolean isOutputSlotEmptyOrReceivable() {
         return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+
     }
 }

@@ -198,9 +198,11 @@ public class CrateBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(crops.get(state.get(CROP)), state.get(AMOUNT)));
+        if (state.get(AMOUNT) == MAX_AMOUNT) {
+            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(crops.get(state.get(CROP)), state.get(AMOUNT)));
 
-        super.onBreak(world, pos, state, player);
+            super.onBreak(world, pos, state, player);
+        }
     }
 
     @Override

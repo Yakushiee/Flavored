@@ -1,31 +1,20 @@
 package net.codenamed.flavored;
 
 import net.codenamed.flavored.registry.*;
-import net.codenamed.flavored.world.gen.feature.CropFeatureConfig;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.block.Blocks;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 // Very important comment
 public class Flavored implements ModInitializer {
+
 	public static final String MOD_ID = "flavored";
 	public static final Logger LOGGER = LoggerFactory.getLogger("flavored");
 
@@ -53,8 +42,6 @@ public class Flavored implements ModInitializer {
 	private static final Identifier SUSPICOUS_SAND_ID = new Identifier("minecraft", "archaeology/desert_pyramid");
 
 	public  static  final  Identifier SNIFFER_DIGGABLE_ID = new Identifier("minecraft", "gameplay/sniffer_digging");
-
-
 
 	@Override
 	public void onInitialize() {
@@ -133,6 +120,7 @@ public class Flavored implements ModInitializer {
 		FlavoredVillagerTrades.registerCustomTrades();
 		FlavoredPaintings.registerPaintings();
 		FlavoredBoats.registerBoats();
+
 
 
 

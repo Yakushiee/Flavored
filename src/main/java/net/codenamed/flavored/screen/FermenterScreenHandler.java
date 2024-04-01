@@ -1,6 +1,7 @@
 package net.codenamed.flavored.screen;
 
 import net.codenamed.flavored.registry.FlavoredScreenHandlers;
+import net.codenamed.flavored.slot.FlavoredBottleSlot;
 import net.codenamed.flavored.slot.FlavoredFermentingSlot;
 import net.codenamed.flavored.slot.FlavoredLiquidSlot;
 import net.codenamed.flavored.slot.FlavoredResultSlot;
@@ -23,13 +24,13 @@ public class FermenterScreenHandler extends ScreenHandler {
 
     public FermenterScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(3));
+                new ArrayPropertyDelegate(4));
     }
 
     public FermenterScreenHandler(int syncId, PlayerInventory playerInventory,
                                      BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
         super(FlavoredScreenHandlers.FERMENTER_SCREEN_HANDLER, syncId);
-        checkSize(((Inventory) blockEntity), 3);
+        checkSize(((Inventory) blockEntity), 4);
         this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = arrayPropertyDelegate;
@@ -39,6 +40,7 @@ public class FermenterScreenHandler extends ScreenHandler {
         this.addSlot(new FlavoredResultSlot(inventory, 1, 116, 35));
         this.addSlot(new FlavoredFermentingSlot(inventory, 2, 29, 35));
         this.addSlot(new FlavoredLiquidSlot(inventory, 3, 56, 59));
+
 
 
 

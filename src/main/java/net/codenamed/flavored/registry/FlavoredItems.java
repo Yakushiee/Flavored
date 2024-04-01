@@ -120,6 +120,7 @@ public class FlavoredItems {
     public static final Item CHORUS_COCKTAIL = registerItem("chorus_cocktail",
             new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.CHORUS_COCKTAIL)));
 
+
     public static final Item FIG_COCKTAIL = registerItem("fig_cocktail",
             new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.FIG_COCKTAIL)));
 

@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
@@ -37,6 +37,9 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
     private static final int FERMENTING_SLOT = 2;
 
     private static final int LIQUID_SLOT = 3;
+
+    private static final int BOTTLE_SLOT = 4;
+
 
 
     protected final PropertyDelegate propertyDelegate;
@@ -65,7 +68,7 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
 
             @Override
             public int size() {
-                return 2;
+                return 5;
             }
         };
     }
@@ -160,6 +163,7 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
         this.removeStack(INPUT_SLOT, 1);
         this.removeStack(FERMENTING_SLOT, 1);
         this.removeStack(LIQUID_SLOT, 1);
+        this.removeStack(BOTTLE_SLOT, 1);
         this.setStack(LIQUID_SLOT, Items.BUCKET.getDefaultStack());
 
 

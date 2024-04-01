@@ -4,16 +4,12 @@
   "key": {
 
     "*": {
-      "item": "minecraft:iron_ingot"
-    },
-    "#": {
-      "item": "minecraft:bucket"
+      "item": "minecraft:brick"
     }
 
   },
   "pattern": [
     "* *",
-    "*#*",
     "***"
   ],
   "result": {

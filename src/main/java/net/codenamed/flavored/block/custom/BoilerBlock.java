@@ -6,11 +6,15 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.Items;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
@@ -30,12 +34,19 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
+    public static final IntProperty WATER = IntProperty.of("water", 0, 3);
+
+
     public BoilerBlock(Settings settings) {
         super(settings);
     }
 
     private static VoxelShape SHAPE = Stream.of(
-            Block.createCuboidShape(2, 0, 2, 14, 10, 14)
+            Block.createCuboidShape(2, 0, 2, 14, 6, 3),
+            Block.createCuboidShape(3, 0, 3, 13, 1, 13),
+            Block.createCuboidShape(2, 0, 13, 14, 6, 14),
+            Block.createCuboidShape(2, 0, 3, 3, 6, 13),
+            Block.createCuboidShape(13, 0, 3, 14, 6, 13)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
     @Override
@@ -61,7 +72,8 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(new Property[]{FACING, WATER});
+
     }
 
 
@@ -88,9 +100,18 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 
+            if (player.getStackInHand(hand).getItem() == Items.WATER_BUCKET || player.getStackInHand(hand).getItem() == Items.POTION) {
+                world.setBlockState(pos, state.with(WATER, state.get(WATER) + 1));
+
+                return ActionResult.SUCCESS;
+            }
+
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
             }
+
+
+
         }
 
         return ActionResult.SUCCESS;
@@ -111,7 +132,7 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return validateTicker(type, FlavoredBlockEntities.BOILER_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1, blockEntity));
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
 

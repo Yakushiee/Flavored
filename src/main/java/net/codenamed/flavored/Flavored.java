@@ -19,7 +19,7 @@ public class Flavored implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("flavored");
 
 
-	public static final Identifier CAULIFLOWER_FEATURE_ID = new Identifier("flavored", "cauliflower_feature");
+	public static final Identifier CAULIFLOWER_FEATURE_ID = new Identifier("flavored", "patch_cauliflower");
 	public static final VegetationPatchFeature  CAULIFLOWER_FEATURE = new VegetationPatchFeature(VegetationPatchFeatureConfig.CODEC);
 
 	public static final RegistryKey<ConfiguredFeature<?, ?>> CAULIFLOWER_FEATURE_CONFIGURED = VegetationConfiguredFeatures.PATCH_PUMPKIN;
@@ -42,6 +42,10 @@ public class Flavored implements ModInitializer {
 	private static final Identifier SUSPICOUS_SAND_ID = new Identifier("minecraft", "archaeology/desert_pyramid");
 
 	public  static  final  Identifier SNIFFER_DIGGABLE_ID = new Identifier("minecraft", "gameplay/sniffer_digging");
+
+
+
+
 
 	@Override
 	public void onInitialize() {
@@ -120,6 +124,8 @@ public class Flavored implements ModInitializer {
 		FlavoredVillagerTrades.registerCustomTrades();
 		FlavoredPaintings.registerPaintings();
 		FlavoredBoats.registerBoats();
+
+
 
 
 

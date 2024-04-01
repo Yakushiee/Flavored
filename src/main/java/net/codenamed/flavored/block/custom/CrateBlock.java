@@ -42,6 +42,9 @@ public class CrateBlock extends Block {
     public  static  final IntProperty CROP = IntProperty.of("crop", 0, 11);
     public  static  final IntProperty AMOUNT = IntProperty.of("amount", 0, 9);
 
+    public static final BooleanProperty FULL = BooleanProperty.of("full");
+
+
 
 
     public static final ArrayList<Item> crops = new ArrayList<>();
@@ -165,6 +168,7 @@ public class CrateBlock extends Block {
            if (state.get(AMOUNT) == MAX_AMOUNT) {
             System.out.println(full_crates.get(state.get(CROP)));
             world.setBlockState(pos, (BlockState) full_crates.get(state.get(CROP)).getStateWithProperties(state));
+            world.setBlockState(pos, state.with(FULL, true));
 
            }
 
@@ -184,7 +188,10 @@ public class CrateBlock extends Block {
                     }
                 }
 
-                return ActionResult.SUCCESS;
+
+
+
+               return ActionResult.SUCCESS;
             }
 
 
@@ -201,8 +208,9 @@ public class CrateBlock extends Block {
         if (state.get(AMOUNT) == MAX_AMOUNT) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(crops.get(state.get(CROP)), state.get(AMOUNT)));
 
-            super.onBreak(world, pos, state, player);
         }
+        super.onBreak(world, pos, state, player);
+
     }
 
     @Override
@@ -227,6 +235,6 @@ public class CrateBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{AMOUNT, EMPTY, CROP});
+        builder.add(new Property[]{AMOUNT, EMPTY, CROP, FULL});
     }
 }

@@ -53,19 +53,19 @@ public class FlavoredItems {
             new Item(new FabricItemSettings().food(FlavoredFoodComponents.CHEESE_SLICE)));
 
     public static final Item CAULIFLOWER_SOUP = registerItem("cauliflower_soup",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.CAULIFLOWER_SOUP).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.CAULIFLOWER_SOUP).maxCount(1)));
 
     public static final Item SPAGHETTI = registerItem("spaghetti",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.SPAGHETTI)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SPAGHETTI)));
 
     public static final Item SALAD = registerItem("salad",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.SALAD).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SALAD).maxCount(1)));
 
     public static final Item CAULIFLOWER_SEEDS = registerItem("cauliflower_seeds",
             new AliasedBlockItem(FlavoredBlocks.CAULIFLOWER_STEM, new FabricItemSettings()));
 
     public static final Item CARBONARA = registerItem("carbonara",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.CARBONARA).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.CARBONARA).maxCount(1)));
 
 
     public static final Item ANCIENT_SIGN = registerItem("ancient_sign",
@@ -74,30 +74,30 @@ public class FlavoredItems {
             new HangingSignItem(FlavoredBlocks.HANGING_ANCIENT_SIGN, FlavoredBlocks.WALL_HANGING_ANCIENT_SIGN, new FabricItemSettings().maxCount(16)));
 
     public static final Item MASHED_POTATOES = registerItem("mashed_potatoes",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.MASHED_POTATOES).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.MASHED_POTATOES).maxCount(1)));
 
     public static final Item GRILLED_VEGETABLES = registerItem("grilled_vegetables",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.GRILLED_VEGETABLES).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GRILLED_VEGETABLES).maxCount(1)));
 
     public static final Item ALFREDO = registerItem("alfredo",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.ALFREDO).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.ALFREDO).maxCount(1)));
 
     public static final Item FRUIT_SALAD = registerItem("fruit_salad",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.FRUIT_SALAD).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.FRUIT_SALAD).maxCount(1)));
 
     public static final Item OCEAN_STEW = registerItem("ocean_stew",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.OCEAN_STEW).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.OCEAN_STEW).maxCount(1)));
 
     public static final Item GLAZED_CHICKEN = registerItem("glazed_chicken",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_CHICKEN).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_CHICKEN).maxCount(1)));
 
     public static final Item GLAZED_BEEF = registerItem("glazed_beef",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_BEEF).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_BEEF).maxCount(1)));
     public static final Item GLAZED_MUTTON = registerItem("glazed_mutton",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_MUTTON).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_MUTTON).maxCount(1)));
 
     public static final Item GLAZED_PORK = registerItem("glazed_pork",
-            new StewItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_PORK).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_PORK).maxCount(1)));
     public static final Item CANDIED_APPLE = registerItem("candied_apple",
             new Item(new FabricItemSettings().food(FlavoredFoodComponents.CANDIED_APPLE)));
 

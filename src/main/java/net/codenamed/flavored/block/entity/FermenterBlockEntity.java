@@ -102,14 +102,14 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
-        nbt.putInt("fermenter.progress", progress);
+        nbt.putInt("fermenter.json.progress", progress);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
-        progress = nbt.getInt("fermenter.progress");
+        progress = nbt.getInt("fermenter.json.progress");
     }
 
     @Nullable

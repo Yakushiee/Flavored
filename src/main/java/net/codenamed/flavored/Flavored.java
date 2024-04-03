@@ -3,11 +3,16 @@ package net.codenamed.flavored;
 import net.codenamed.flavored.registry.*;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +24,15 @@ public class Flavored implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("flavored");
 
 
-	public static final Identifier CAULIFLOWER_FEATURE_ID = new Identifier("flavored", "patch_cauliflower");
-	public static final VegetationPatchFeature  CAULIFLOWER_FEATURE = new VegetationPatchFeature(VegetationPatchFeatureConfig.CODEC);
+	public static final RegistryKey<PlacedFeature> PATCH_CAULIFLOWER = registerKey("patch_cauliflower");
+	public static final RegistryKey<PlacedFeature> PATCH_SPINACH = registerKey("patch_spinach");
+	public static final RegistryKey<PlacedFeature> PATCH_ROSEMARY = registerKey("patch_rosemary");
+	public static final RegistryKey<PlacedFeature> PATCH_GARLIC = registerKey("patch_garlic");
 
-	public static final RegistryKey<ConfiguredFeature<?, ?>> CAULIFLOWER_FEATURE_CONFIGURED = VegetationConfiguredFeatures.PATCH_PUMPKIN;
 
-	public static RegistryKey<PlacedFeature> CAULIFLOWER_FEATURE_PLACED = VegetationPlacedFeatures.PATCH_PUMPKIN;
-
+	public static RegistryKey<PlacedFeature> registerKey(String name) {
+		return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(Flavored.MOD_ID, name));
+	}
 	private static final Identifier DATAPACK_ID = new Identifier("minecraft", "src/main/resources/resourcepacks/flavored_resources.zip");
 
 
@@ -125,6 +132,30 @@ public class Flavored implements ModInitializer {
 		FlavoredPaintings.registerPaintings();
 		FlavoredBoats.registerBoats();
 
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_CAULIFLOWER);
+
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_PINE_TAIGA),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
+
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_ROSEMARY);
+
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_PLAINS),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_SPINACH);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_SPINACH);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_SLOPES),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_SPINACH);
+	}
 
 
 
@@ -136,4 +167,3 @@ public class Flavored implements ModInitializer {
 
 
 	}
-}

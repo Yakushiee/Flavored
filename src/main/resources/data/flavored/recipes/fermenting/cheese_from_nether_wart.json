@@ -1,0 +1,15 @@
+{
+  "type": "flavored:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:nether_wart"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "output": {
+    "item": "flavored:cheese",
+    "count": 1
+  }
+}

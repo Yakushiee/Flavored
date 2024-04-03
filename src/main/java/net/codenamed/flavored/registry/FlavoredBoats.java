@@ -16,9 +16,10 @@ public class FlavoredBoats {
         public static final Identifier ANCIENT_BOAT_ID = new Identifier(Flavored.MOD_ID, "ancient_boat");
         public static final Identifier ANCIENT_CHEST_BOAT_ID = new Identifier(Flavored.MOD_ID, "ancient_chest_boat");
 
-        public static final RegistryKey<TerraformBoatType> ANCIENT_BOAT_KEY = TerraformBoatTypeRegistry.createKey(ANCIENT_BOAT_ID);
+        public static final RegistryKey<TerraformBoatType> ANCIENT_BOAT_KEY = TerraformBoatTypeRegistry.createKey(Identifier.of(Flavored.MOD_ID, "ancient"));
 
-        public static void registerBoats() {
+
+    public static void registerBoats() {
             TerraformBoatType ancientBoat = new TerraformBoatType.Builder()
                     .item(FlavoredItems.ANCIENT_BOAT)
                     .chestItem(FlavoredItems.ANCIENT_CHEST_BOAT)

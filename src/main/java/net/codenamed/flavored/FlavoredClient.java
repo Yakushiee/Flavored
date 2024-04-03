@@ -15,6 +15,7 @@ import net.codenamed.flavored.registry.FlavoredBlocks;
 import net.codenamed.flavored.registry.FlavoredBlockEntities;
 import net.codenamed.flavored.block.entity.renderer.RangeBlockEntityRenderer;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.util.Identifier;
 
 public class FlavoredClient implements ClientModInitializer {
     public void onInitializeClient() {
@@ -47,7 +48,7 @@ public class FlavoredClient implements ClientModInitializer {
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, FlavoredBlocks.ANCIENT_SIGN_TEXTURE));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, FlavoredBlocks.ANCIENT_HANGING_SIGN_TEXTURE));
 
-        TerraformBoatClientHelper.registerModelLayers(FlavoredBoats.ANCIENT_BOAT_ID, false);
+        TerraformBoatClientHelper.registerModelLayers(new Identifier(Flavored.MOD_ID, "ancient"), false);
 
 
     }

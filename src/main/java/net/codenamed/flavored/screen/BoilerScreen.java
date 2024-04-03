@@ -32,13 +32,17 @@ public class BoilerScreen extends HandledScreen<BoilerScreenHandler> {
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        renderProgressArrow(context, x, y);
+        renderProgress(context, x, y);
     }
 
-    private void renderProgressArrow(DrawContext context, int x, int y) {
+    private void renderProgress(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 84, y + 20, 176, 16, handler.getScaledProgress(), 16);
+            context.drawTexture(TEXTURE, x + 91, y + 20, 176, 16, handler.getScaledProgress(), 16);
 
+        }
+        if(handler.hasWater()) {
+            context.drawTexture(TEXTURE, x + 37, y + 43 + 18 - (handler.getScaledWaterProgress()) * 6, 176,
+                    33 + 18 - (handler.getScaledWaterProgress()) * 6, 6,  18);
         }
     }
 

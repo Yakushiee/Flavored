@@ -38,8 +38,6 @@ public class FlavoredItems {
     public static final Item OIL = registerItem("oil",
             new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.OIL)));
 
-    public static final Item CARAMEL = registerItem("caramel",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.CARAMEL)));
     public static final Item PASTA = registerItem("pasta",
             new Item(new FabricItemSettings()));
 
@@ -53,13 +51,13 @@ public class FlavoredItems {
             new Item(new FabricItemSettings().food(FlavoredFoodComponents.CHEESE_SLICE)));
 
     public static final Item CAULIFLOWER_SOUP = registerItem("cauliflower_soup",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.CAULIFLOWER_SOUP).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.CAULIFLOWER_SOUP).maxCount(16)));
 
     public static final Item SPAGHETTI = registerItem("spaghetti",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SPAGHETTI)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SPAGHETTI).maxCount(16)));
 
     public static final Item SALAD = registerItem("salad",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SALAD).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SALAD).maxCount(16)));
 
     public static final Item CAULIFLOWER_SEEDS = registerItem("cauliflower_seeds",
             new AliasedBlockItem(FlavoredBlocks.CAULIFLOWER_STEM, new FabricItemSettings()));
@@ -74,19 +72,30 @@ public class FlavoredItems {
             new HangingSignItem(FlavoredBlocks.HANGING_ANCIENT_SIGN, FlavoredBlocks.WALL_HANGING_ANCIENT_SIGN, new FabricItemSettings().maxCount(16)));
 
     public static final Item MASHED_POTATOES = registerItem("mashed_potatoes",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.MASHED_POTATOES).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.MASHED_POTATOES).maxCount(16)));
 
     public static final Item GRILLED_VEGETABLES = registerItem("grilled_vegetables",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GRILLED_VEGETABLES).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GRILLED_VEGETABLES).maxCount(16)));
 
     public static final Item ALFREDO = registerItem("alfredo",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.ALFREDO).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.ALFREDO).maxCount(16)));
 
     public static final Item FRUIT_SALAD = registerItem("fruit_salad",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.FRUIT_SALAD).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.FRUIT_SALAD).maxCount(16)));
 
     public static final Item OCEAN_STEW = registerItem("ocean_stew",
-            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.OCEAN_STEW).maxCount(1)));
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.OCEAN_STEW).maxCount(16)));
+
+    public static final Item PORRIDGE = registerItem("porridge",
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.PORRIDGE).maxCount(16)));
+
+    public static final Item SHAKSHOKA = registerItem("shakshoka",
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.SHAKSHOKA).maxCount(16)));
+
+    public static final Item MINESTRONE = registerItem("minestrone",
+            new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.MINESTRONE).maxCount(16)));
+
+
 
     public static final Item GLAZED_CHICKEN = registerItem("glazed_chicken",
             new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.GLAZED_CHICKEN).maxCount(1)));

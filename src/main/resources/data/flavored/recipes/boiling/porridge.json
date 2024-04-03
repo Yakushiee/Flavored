@@ -1,0 +1,18 @@
+{
+  "type": "flavored:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "output": {
+    "item": "flavored:porridge",
+    "count": 1
+  }
+}

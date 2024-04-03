@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 import net.codenamed.flavored.Flavored;
 
 public class FermenterScreen extends HandledScreen<FermenterScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Flavored.MOD_ID, "textures/gui/fermenter.json.png");
+    private static final Identifier TEXTURE = new Identifier(Flavored.MOD_ID, "textures/gui/fermenter.png");
 
     public FermenterScreen(FermenterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

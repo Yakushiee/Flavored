@@ -5,13 +5,13 @@
       "item": "flavored:oil"
     },
     {
-      "item": "minecraft:carrot"
+      "item": "flavored:tomato"
     },
     {
-      "item": "minecraft:beetroot"
+      "item": "minecraft:egg"
     },
     {
-      "item": "flavored:cauliflower_curd"
+      "item": "flavored:garlic"
     },
     {
       "item": "minecraft:bowl"
@@ -20,7 +20,7 @@
 
   ],
   "output": {
-    "item": "flavored:grilled_vegetables",
+    "item": "flavored:shakshoka",
     "count": 1
   }
 }

@@ -1,0 +1,18 @@
+{
+  "type": "flavored:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:cod"
+    },
+    {
+      "item": "minecraft:kelp"
+    },
+    {
+      "item": "minecraft:kelp"
+    }
+  ],
+  "output": {
+    "item": "flavored:ocean_stew",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "flavored:frying",
+  "ingredients": [
+    {
+      "item": "flavored:oil"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+
+
+  ],
+  "output": {
+    "item": "flavored:candied_apple",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "flavored:boiling",
+  "ingredients": [
+    {
+      "item": "flavored:cauliflower_curd"
+    },
+    {
+      "item": "flavored:cauliflower_curd"
+    },
+    {
+      "item": "flavored:garlic"
+    }
+  ],
+  "output": {
+    "item": "flavored:minestrone",
+    "count": 1
+  }
+}

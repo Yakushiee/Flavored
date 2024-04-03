@@ -1,6 +1,8 @@
 package net.codenamed.flavored.block.entity;
 
 import net.codenamed.flavored.block.custom.BoilerBlock;
+import net.codenamed.flavored.block.custom.FermenterBlock;
+import net.codenamed.flavored.recipe.FermenterRecipe;
 import net.codenamed.flavored.recipe.OvenRecipe;
 import net.codenamed.flavored.registry.FlavoredBlockEntities;
 import net.codenamed.flavored.screen.BoilerScreenHandler;
@@ -37,24 +39,25 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
 
     private static final int INPUT_SLOT1 = 0;
-    private static final int OUTPUT_SLOT = 1;
-    private static final int INPUT_SLOT2 = 2;
-    private static final int INPUT_SLOT3 = 3;
-    private static final int INPUT_SLOT4 = 4;
+    private static final int INPUT_SLOT2 = 1;
+    private static final int INPUT_SLOT3 = 2;
+    private static final int INPUT_SLOT4 = 3;
 
-    private static final int BOWL_SLOT = 5;
+    private static final int BOWL_SLOT = 4;
+
+    private static final int OUTPUT_SLOT = 5;
 
 
 
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private  int liquid = 0;
-    private int maxProgress = 768;
+    private  int water = 0;
+
+    private int maxProgress = 120;
 
     public BoilerBlockEntity(BlockPos pos, BlockState state) {
         super(FlavoredBlockEntities.BOILER_BLOCK_ENTITY, pos, state);
-
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -80,7 +83,10 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
         };
     }
 
-
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
+    }
 
     @Override
     public Text getDisplayName() {
@@ -92,28 +98,31 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
         return inventory;
     }
 
+    public  void  setLiquid(int l) {
+        this.water = l;
+    }
 
+    public  int  getLiquid() {
+
+        return water;
+    }
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("boiler.progress", progress);
-    }
+        nbt.putInt("boiler.water", water);
 
-    public  void  setLiquid(int l) {
-        this.liquid = l;
     }
-
-    public  int  getLiquid() {
-        return this.liquid;
-    }
-
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("boiler.progress");
+        water = nbt.getInt("boiler.water");
+        System.out.println(water);
+
     }
 
     @Nullable
@@ -136,6 +145,9 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
                 if(hasCraftingFinished()) {
                     this.craftItem();
                     this.resetProgress();
+                    state = (BlockState)state.with(BoilerBlock.WATER, water);
+                    world.setBlockState(pos, state);
+
                 }
             } else {
                 this.resetProgress();
@@ -160,7 +172,8 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
 
         this.removeStack(BOWL_SLOT, 1);
 
-        this.liquid--;
+        this.water--;
+
 
 
 
@@ -180,7 +193,7 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
     private boolean hasRecipe() {
         Optional<RecipeEntry<BoilerRecipe>> recipe = getCurrentRecipe();
 
-        return this.liquid > 0 && this.getStack(BOWL_SLOT).getItem() == Items.BOWL && recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+        return this.water > 0 && this.getStack(BOWL_SLOT).getItem() == Items.BOWL && recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
@@ -203,10 +216,5 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
 
     private boolean isOutputSlotEmptyOrReceivable() {
         return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
-    }
-
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-
     }
 }

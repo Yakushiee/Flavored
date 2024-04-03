@@ -1,0 +1,18 @@
+{
+  "type": "flavored:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "flavored:tomato"
+    },
+    {
+      "item": "flavored:pasta"
+    }
+  ],
+  "output": {
+    "item": "flavored:minestrone",
+    "count": 1
+  }
+}

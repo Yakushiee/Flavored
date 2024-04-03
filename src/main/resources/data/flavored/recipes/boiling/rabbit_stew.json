@@ -1,0 +1,21 @@
+{
+  "type": "flavored:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "output": {
+    "item": "minecraft:rabbit_stew",
+    "count": 1
+  }
+}

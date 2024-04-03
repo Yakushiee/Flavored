@@ -105,26 +105,30 @@ public class BoilerBlock extends BlockWithEntity implements BlockEntityProvider 
         BlockEntity b = world.getBlockEntity(pos);
 
 
+        if (player.getStackInHand(hand).getItem() == Items.WATER_BUCKET  && state.get(WATER) < MAX_WATER  || player.getStackInHand(hand).getItem() == Items.POTION && state.get(WATER) < MAX_WATER ) {
+            world.setBlockState(pos, state.with(WATER, state.get(WATER) + 1));
+            world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 0.2F, 1.5F);
+
+            if (b instanceof BoilerBlockEntity) {
+                ((BoilerBlockEntity) b).setLiquid(state.get(WATER) + 1);
+
+                return ActionResult.SUCCESS;
+
+            }
+
+        }
+
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = ((BoilerBlockEntity) world.getBlockEntity(pos));
 
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
+                return ActionResult.SUCCESS;
+
             }
         }
 
-            if (player.getStackInHand(hand).getItem() == Items.WATER_BUCKET || player.getStackInHand(hand).getItem() == Items.POTION && state.get(WATER) < 2 ) {
-                world.setBlockState(pos, state.with(WATER, state.get(WATER) + 1));
-                world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 0.2F, 1.5F);
 
-                if (b instanceof BoilerBlockEntity) {
-                    ((BoilerBlockEntity) b).setLiquid(state.get(WATER));
-
-                    return ActionResult.SUCCESS;
-
-                }
-
-            }
 
         return ActionResult.SUCCESS;
     }

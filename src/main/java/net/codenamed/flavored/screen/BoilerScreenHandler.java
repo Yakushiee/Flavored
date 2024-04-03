@@ -27,7 +27,7 @@ public class BoilerScreenHandler extends ScreenHandler {
     }
 
     public BoilerScreenHandler(int syncId, PlayerInventory playerInventory,
-                                  BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
+                               BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
         super(FlavoredScreenHandlers.BOILER_SCREEN_HANDLER, syncId);
         checkSize(((Inventory) blockEntity), 6);
         this.inventory = ((Inventory) blockEntity);
@@ -36,11 +36,11 @@ public class BoilerScreenHandler extends ScreenHandler {
         this.blockEntity = ((BoilerBlockEntity) blockEntity);
 
         this.addSlot(new Slot(inventory, 0, 17, 19));
-        this.addSlot(new FlavoredResultSlot(inventory, 1, 127, 20));
-        this.addSlot(new Slot(inventory, 2, 35, 19));
-        this.addSlot(new Slot(inventory, 3, 53, 19));
-        this.addSlot(new Slot(inventory, 4, 71, 19));
-        this.addSlot(new Slot(inventory, 5, 17, 44));
+        this.addSlot(new Slot(inventory, 1, 35, 19));
+        this.addSlot(new Slot(inventory, 2, 53, 19));
+        this.addSlot(new Slot(inventory, 3, 71, 19));
+        this.addSlot(new Slot(inventory, 4, 17, 44));
+        this.addSlot(new FlavoredResultSlot(inventory, 5, 127, 20));
 
 
 
@@ -67,12 +67,7 @@ public class BoilerScreenHandler extends ScreenHandler {
     }
 
     public int getScaledWaterProgress() {
-
-        int progress = this.blockEntity.getLiquid();
-        int maxProgress = 3;
-        int progressSize = 3;
-
-        return maxProgress != 0 ? (int)(((float)progress / (float)maxProgress) * progressSize) : 0;
+        return this.blockEntity.getLiquid();
     }
 
     @Override
@@ -106,7 +101,8 @@ public class BoilerScreenHandler extends ScreenHandler {
     }
 
     public  boolean hasWater() {
-        return this.blockEntity.getLiquid() > 0;
+        System.out.println(blockEntity.getLiquid());
+        return blockEntity.getLiquid() > 0;
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {

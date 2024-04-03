@@ -57,7 +57,6 @@ public class FlavoredItemGroup {
                         entries.add(FlavoredItems.SPINACH);
                         entries.add(FlavoredItems.SPINACH_SEEDS);
                         entries.add(FlavoredItems.FIG);
-                        entries.add(FlavoredItems.CARAMEL);
                         entries.add(FlavoredItems.ROSEMARY);
                         entries.add(FlavoredItems.PUMPKIN_SLICE);
                         entries.add(FlavoredBlocks.CARVED_MELON);
@@ -74,6 +73,13 @@ public class FlavoredItemGroup {
                         entries.add(FlavoredItems.GLAZED_MUTTON);
                         entries.add(FlavoredItems.GLAZED_CHICKEN);
                         entries.add(FlavoredItems.CANDIED_APPLE);
+                        entries.add(FlavoredItems.ALFREDO);
+                        entries.add(FlavoredItems.OCEAN_STEW);
+                        entries.add(FlavoredItems.GRILLED_VEGETABLES);
+                        entries.add(FlavoredItems.FRUIT_SALAD);
+                        entries.add(FlavoredItems.PORRIDGE);
+                        entries.add(FlavoredItems.SHAKSHOKA);
+                        entries.add(FlavoredItems.MINESTRONE);
                         entries.add(FlavoredBlocks.PIZZA);
                         entries.add(FlavoredItems.PIZZA_SLICE);
                         entries.add(FlavoredBlocks.GARLIC_BREAD);

@@ -1,0 +1,15 @@
+{
+  "type": "flavored:boiling",
+  "ingredients": [
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "item": "minecraft:beetroot"
+    }
+  ],
+  "output": {
+    "item": "minecraft:beetroot_stew",
+    "count": 1
+  }
+}

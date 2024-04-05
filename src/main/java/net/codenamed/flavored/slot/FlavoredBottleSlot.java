@@ -12,15 +12,15 @@ public class FlavoredBottleSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        return FlavoredBottleSlot.isFermenting(stack);
+        return FlavoredBottleSlot.isBottle(stack);
     }
 
     @Override
     public int getMaxItemCount(ItemStack stack) {
-        return FlavoredBottleSlot.isFermenting(stack) ? 1 : super.getMaxItemCount(stack);
+        return FlavoredBottleSlot.isBottle(stack) ? 1 : super.getMaxItemCount(stack);
     }
 
-    public static boolean isFermenting(ItemStack stack) {
+    public static boolean isBottle(ItemStack stack) {
         return stack.isOf(Items.GLASS_BOTTLE);
     }
 }

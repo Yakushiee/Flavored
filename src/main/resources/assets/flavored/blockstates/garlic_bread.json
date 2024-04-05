@@ -1,16 +1,28 @@
 {
   "variants": {
-    "bites=0": {
+    "bites=0,seasoned=false": {
       "model": "flavored:block/garlic_bread"
     },
-    "bites=1": {
+    "bites=1,seasoned=false": {
       "model": "flavored:block/garlic_bread_slice_1"
     },
-    "bites=2": {
+    "bites=2,seasoned=false": {
       "model": "flavored:block/garlic_bread_slice_2"
     },
-    "bites=3": {
+    "bites=3,seasoned=false": {
       "model": "flavored:block/garlic_bread_slice_3"
+    },
+    "bites=0,seasoned=true": {
+      "model": "flavored:block/garlic_bread_seasoned"
+    },
+    "bites=1,seasoned=true": {
+      "model": "flavored:block/garlic_bread_seasoned_slice_1"
+    },
+    "bites=2,seasoned=true": {
+      "model": "flavored:block/garlic_bread_seasoned_slice_2"
+    },
+    "bites=3,seasoned=true": {
+      "model": "flavored:block/garlic_bread_seasoned_slice_3"
     }
   }
 }

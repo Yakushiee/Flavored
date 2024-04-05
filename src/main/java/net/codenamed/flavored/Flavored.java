@@ -39,14 +39,14 @@ public class Flavored implements ModInitializer {
 
 	private static final Identifier JUNGLE_TEMPLE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/jungle_temple");
 
-	private static final Identifier PLAINS_VILLAGE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/village/village_plains_house");
+	private static final Identifier DESERT_PYRAMID_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/desert_pyramid");
+
+
 	private static final Identifier TAIGA_VILLAGE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/village/village_taiga_house");
 	private static final Identifier DESERT_VILLAGE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/village/village_desert_house");
 	private static final Identifier SAVANNA_VILLAGE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/village/village_savanna_house");
 
 	private static final Identifier SNOWY_VILLAGE_CHEST_LOOT_TABLE_ID = new Identifier("minecraft", "chests/village/village_snowy_house");
-
-	private static final Identifier SUSPICOUS_SAND_ID = new Identifier("minecraft", "archaeology/desert_pyramid");
 
 	public  static  final  Identifier SNIFFER_DIGGABLE_ID = new Identifier("minecraft", "gameplay/sniffer_digging");
 
@@ -63,19 +63,15 @@ public class Flavored implements ModInitializer {
 								.with(ItemEntry.builder(FlavoredItems.TOMATO_SEEDS));
 						tableBuilder.pool(poolBuilder);
 					}
-			if (source.isBuiltin() && JUNGLE_TEMPLE_CHEST_LOOT_TABLE_ID.equals(id)) {
+			if (source.isBuiltin() && DESERT_PYRAMID_CHEST_LOOT_TABLE_ID.equals(id)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(FlavoredItems.GARLIC));
+						.with(ItemEntry.builder(FlavoredItems.TOMATO_SEEDS));
 				tableBuilder.pool(poolBuilder);
 			}
-			if (source.isBuiltin() && PLAINS_VILLAGE_CHEST_LOOT_TABLE_ID.equals(id)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(FlavoredItems.GARLIC));
-				tableBuilder.pool(poolBuilder);
-			}
+
 			if (source.isBuiltin() && DESERT_VILLAGE_CHEST_LOOT_TABLE_ID.equals(id)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(FlavoredItems.GARLIC));
+						.with(ItemEntry.builder(FlavoredItems.TOMATO_SEEDS));
 
 				tableBuilder.pool(poolBuilder);
 
@@ -90,16 +86,17 @@ public class Flavored implements ModInitializer {
 						.with(ItemEntry.builder(FlavoredItems.GARLIC));
 				tableBuilder.pool(poolBuilder);
 			}
-			if (source.isBuiltin() && SAVANNA_VILLAGE_CHEST_LOOT_TABLE_ID.equals(id)) {
+			if (source.isBuiltin() && SNOWY_VILLAGE_CHEST_LOOT_TABLE_ID.equals(id)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(FlavoredItems.GARLIC));
+						.with(ItemEntry.builder(FlavoredItems.SPINACH));
 				tableBuilder.pool(poolBuilder);
 			}
 			if (source.isBuiltin() && SNOWY_VILLAGE_CHEST_LOOT_TABLE_ID.equals(id)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(FlavoredItems.ROSEMARY));
+						.with(ItemEntry.builder(FlavoredItems.SPINACH_SEEDS));
 				tableBuilder.pool(poolBuilder);
 			}
+
 			if (source.isBuiltin() && TAIGA_VILLAGE_CHEST_LOOT_TABLE_ID.equals(id)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.with(ItemEntry.builder(FlavoredItems.ROSEMARY));
@@ -137,8 +134,6 @@ public class Flavored implements ModInitializer {
 
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
 				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA),
-				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_PINE_TAIGA),
 				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_GARLIC);
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA),
@@ -148,6 +143,10 @@ public class Flavored implements ModInitializer {
 
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW),
 				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_ROSEMARY);
+
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_ROSEMARY);
+
 
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_PLAINS),
 				GenerationStep.Feature.VEGETAL_DECORATION, PATCH_SPINACH);

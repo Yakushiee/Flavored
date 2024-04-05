@@ -1,5 +1,6 @@
 package net.codenamed.flavored.block.custom;
 
+import net.codenamed.flavored.registry.FlavoredItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,6 +9,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
@@ -30,6 +32,9 @@ import java.util.stream.Stream;
 public class GarlicBreadBlock extends HorizontalFacingBlock {
     public static final int MAX_BITES = 3;
     public static final IntProperty BITES;
+
+    public static final BooleanProperty SEASONED = BooleanProperty.of("seasoned");
+
     public static final int DEFAULT_COMPARATOR_OUTPUT;
     protected static final float field_31047 = 1.0F;
     protected static final float field_31048 = 2.0F;
@@ -37,7 +42,7 @@ public class GarlicBreadBlock extends HorizontalFacingBlock {
 
     public GarlicBreadBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(BITES, 0));
+        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(BITES, 0).with(SEASONED, false));
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -46,9 +51,15 @@ public class GarlicBreadBlock extends HorizontalFacingBlock {
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
+        if (player.getStackInHand(hand).getItem() == FlavoredItems.ROSEMARY && !state.get(SEASONED)) {
+            world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_MOSS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.setBlockState(pos, state.with(SEASONED, true));
+            return ActionResult.SUCCESS;
 
+        }
 
         if (world.isClient) {
+
             if (tryEat(world, pos, state, player).isAccepted()) {
                 return ActionResult.SUCCESS;
             }
@@ -56,6 +67,8 @@ public class GarlicBreadBlock extends HorizontalFacingBlock {
             if (itemStack.isEmpty()) {
                 return ActionResult.CONSUME;
             }
+
+
         }
 
         return tryEat(world, pos, state, player);
@@ -68,6 +81,10 @@ public class GarlicBreadBlock extends HorizontalFacingBlock {
             player.incrementStat(Stats.EAT_CAKE_SLICE);
             world.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             player.getHungerManager().add(3, 0.5F);
+            if (state.get(SEASONED)) {
+                player.getHungerManager().add(1, 0.1F);
+
+            }
             int i = (Integer)state.get(BITES);
             world.emitGameEvent(player, GameEvent.EAT, pos);
             if (i < 3) {
@@ -90,7 +107,7 @@ public class GarlicBreadBlock extends HorizontalFacingBlock {
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{BITES});
+        builder.add(new Property[]{BITES, SEASONED});
     }
 
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {

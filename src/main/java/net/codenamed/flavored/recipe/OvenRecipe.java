@@ -28,41 +28,60 @@ public class OvenRecipe implements Recipe<SimpleInventory> {
         }
 
 
-        for (int i = 1; i <= 4; i++) {
-            for (int j = 1; j <= 4; j++) {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= 5; j++) {
                 if (j == i) continue;
-                for (int k = 1; k <= 4; k++) {
+                for (int k = 1; k <= 5; k++) {
                     if (k == i || k == j) continue;
-                    for (int l = 1; l <= 4; l++) {
+                    for (int l = 1; l <= 5; l++) {
                         if (l == i || l == j || l == k) continue;
                         boolean result = false;
                         int size = 0;
 
-                        for (int x = 0; x < inventory.size(); x++) {
+                        for (int x = 1; x < inventory.size(); x++) {
                             if (!inventory.getStack(x).isEmpty()) {
                                 size++;
                             }
                         }
 
-                        if (recipeItems.size() == 4 && size == 5) {
-                            result = recipeItems.get(0).test(inventory.getStack(i))
-                                    && recipeItems.get(1).test(inventory.getStack(j))
-                                    && recipeItems.get(2).test(inventory.getStack(k))
-                                    && recipeItems.get(3).test(inventory.getStack(l));
-                        }
-                        else if (recipeItems.size() == 3 && size == 4) {
-                            result = recipeItems.get(0).test(inventory.getStack(i))
-                                    && recipeItems.get(1).test(inventory.getStack(j))
-                                    && recipeItems.get(2).test(inventory.getStack(k));
-                        }
-                        else if (recipeItems.size() == 2 && size == 3) {
-                            result = recipeItems.get(0).test(inventory.getStack(i))
-                                    && recipeItems.get(1).test(inventory.getStack(j));
+                        if (inventory.getStack(5).isEmpty()) {
 
-                        }
-                        else if (recipeItems.size() == 1 && size == 2) {
-                            result = recipeItems.get(0).test(inventory.getStack(i));
+                            if (recipeItems.size() == 4 && size == 4) {
+                                result = recipeItems.get(0).test(inventory.getStack(i))
+                                        && recipeItems.get(1).test(inventory.getStack(j))
+                                        && recipeItems.get(2).test(inventory.getStack(k))
+                                        && recipeItems.get(3).test(inventory.getStack(l));
+                            } else if (recipeItems.size() == 3 && size == 3) {
+                                result = recipeItems.get(0).test(inventory.getStack(i))
+                                        && recipeItems.get(1).test(inventory.getStack(j))
+                                        && recipeItems.get(2).test(inventory.getStack(k));
+                            } else if (recipeItems.size() == 2 && size == 2) {
+                                result = recipeItems.get(0).test(inventory.getStack(i))
+                                        && recipeItems.get(1).test(inventory.getStack(j));
 
+                            } else if (recipeItems.size() == 1 && size == 1) {
+                                result = recipeItems.get(0).test(inventory.getStack(i));
+
+                            }
+                        }
+                        else {
+                            if (recipeItems.size() == 4 && size == 5) {
+                                result = recipeItems.get(0).test(inventory.getStack(i))
+                                        && recipeItems.get(1).test(inventory.getStack(j))
+                                        && recipeItems.get(2).test(inventory.getStack(k))
+                                        && recipeItems.get(3).test(inventory.getStack(l));
+                            } else if (recipeItems.size() == 3 && size == 4) {
+                                result = recipeItems.get(0).test(inventory.getStack(i))
+                                        && recipeItems.get(1).test(inventory.getStack(j))
+                                        && recipeItems.get(2).test(inventory.getStack(k));
+                            } else if (recipeItems.size() == 2 && size == 3) {
+                                result = recipeItems.get(0).test(inventory.getStack(i))
+                                        && recipeItems.get(1).test(inventory.getStack(j));
+
+                            } else if (recipeItems.size() == 1 && size == 2) {
+                                result = recipeItems.get(0).test(inventory.getStack(i));
+
+                            }
                         }
 
                         if (result) {

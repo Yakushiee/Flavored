@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "flavored:block/crate",
 		"1": "flavored:block/crate_top",
-		"2": "flavored:block/garlics",
+		"2": "flavored:block/chorus_fruits",
 		"3": "flavored:block/crate_chorus_fruit_top",
 		"particle": "flavored:block/crate"
 	},

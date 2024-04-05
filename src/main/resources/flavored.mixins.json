@@ -7,7 +7,8 @@
     "DeadBushBlockMixin",
     "MelonBlockMixin",
     "PlantBlockMixin",
-    "StemBlockMixin"
+    "StemBlockMixin",
+    "StewItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

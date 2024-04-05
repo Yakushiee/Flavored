@@ -42,8 +42,6 @@ public class CrateBlock extends Block {
     public  static  final IntProperty CROP = IntProperty.of("crop", 0, 11);
     public  static  final IntProperty AMOUNT = IntProperty.of("amount", 0, 9);
 
-    public static final BooleanProperty FULL = BooleanProperty.of("full");
-
 
 
 
@@ -66,18 +64,6 @@ public class CrateBlock extends Block {
         crops.add(FlavoredItems.FIG);
         crops.add(FlavoredItems.SPINACH);
 
-        full_crates.add(FlavoredBlocks.TOMATO_CRATE);
-        full_crates.add(FlavoredBlocks.APPLE_CRATE);
-        full_crates.add(FlavoredBlocks.CARROT_CRATE);
-        full_crates.add(FlavoredBlocks.BEETROOT_CRATE);
-        full_crates.add(FlavoredBlocks.POTATO_CRATE);
-        full_crates.add(FlavoredBlocks.SWEET_BERRY_CRATE);
-        full_crates.add(FlavoredBlocks.GLOW_BERRY_CRATE);
-        full_crates.add(FlavoredBlocks.CHORUS_CRATE);
-        full_crates.add(FlavoredBlocks.GARLIC_CRATE);
-        full_crates.add(FlavoredBlocks.ROSEMARY_CRATE);
-        full_crates.add(FlavoredBlocks.FIG_CRATE);
-        full_crates.add(FlavoredBlocks.SPINACH_CRATE);
 
 
     }
@@ -165,12 +151,7 @@ public class CrateBlock extends Block {
             }
 
 
-           if (state.get(AMOUNT) == MAX_AMOUNT) {
-            System.out.println(full_crates.get(state.get(CROP)));
-            world.setBlockState(pos, (BlockState) full_crates.get(state.get(CROP)).getStateWithProperties(state));
-            world.setBlockState(pos, state.with(FULL, true));
 
-           }
 
 
             else if (player.getStackInHand(hand).isEmpty() && !state.get(EMPTY)) {
@@ -205,7 +186,7 @@ public class CrateBlock extends Block {
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (state.get(AMOUNT) == MAX_AMOUNT) {
+        if (state.get(AMOUNT) <= MAX_AMOUNT-1) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(crops.get(state.get(CROP)), state.get(AMOUNT)));
 
         }
@@ -235,6 +216,6 @@ public class CrateBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{AMOUNT, EMPTY, CROP, FULL});
+        builder.add(new Property[]{AMOUNT, EMPTY, CROP});
     }
 }

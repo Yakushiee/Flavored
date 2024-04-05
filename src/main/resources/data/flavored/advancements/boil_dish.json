@@ -1,31 +1,27 @@
 {
+  "parent": "minecraft:husbandry/plant_seed",
+
   "display": {
     "icon": {
-      "item": "flavored:pizza"
+      "item": "flavored:mushroom_stew"
     },
-    "title": "The delicacies of the mud furnace",
-    "description": "Bake your first dish",
-    "background": "minecraft:textures/block/haybale_side",
+    "title": "Hot (Water) Stuff",
+    "description": "Obtain a boiled food",
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": true
+    "announce_to_chat": true
   },
   "criteria": {
     "requirement": {
-      "trigger": "minecraft:recipe_crafted",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "player": {},
-        "recipe_id": "flavored:sweet_berry_cocktail",
-        "ingredients": [
-          {}
+        "items": [
+          {
+            "tag": "flavored:boiled"
+
+          }
         ]
       }
     }
-  },
-  "requirements": [
-    [
-      ""
-    ]
-  ]
+  }
 }

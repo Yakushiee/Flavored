@@ -44,7 +44,23 @@
     "facing=west,oil=true,lit=true": {
       "model": "flavored:block/range_oiled_on",
       "y": 270
+    },
+    "facing=east,oil=false,lit=true": {
+      "model": "flavored:block/range_on",
+      "y": 90
+    },
+    "facing=north,oil=false,lit=true": {
+      "model": "flavored:block/range_on"
+    },
+    "facing=south,oil=false,lit=true": {
+      "model": "flavored:block/range_on",
+      "y": 180
+    },
+    "facing=west,oil=false,lit=true": {
+      "model": "flavored:block/range_on",
+      "y": 270
     }
+
 
   }
 }

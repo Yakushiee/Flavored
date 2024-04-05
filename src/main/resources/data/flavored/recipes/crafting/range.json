@@ -4,7 +4,7 @@
   "key": {
 
     "*": {
-      "item": "minecraft:iron_ingot"
+      "tags": "minecraft:planks"
     },
     "#": {
       "item": "minecraft:cobbled_deepslate"
@@ -12,9 +12,9 @@
 
   },
   "pattern": [
-    "***",
     "###",
-    "###"
+    "###",
+    "*  *"
   ],
   "result": {
     "item": "flavored:range"

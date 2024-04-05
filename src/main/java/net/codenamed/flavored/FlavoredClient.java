@@ -31,7 +31,8 @@ public class FlavoredClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(FlavoredBlocks.ANCIENT_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FlavoredBlocks.ANCIENT_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FlavoredBlocks.FLOWERING_ANCIENT_LEAVES, RenderLayer.getCutout());
-
+        BlockRenderLayerMap.INSTANCE.putBlock(FlavoredBlocks.WILD_SPINACH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FlavoredBlocks.WILD_GARLIC, RenderLayer.getCutout());
 
 
 
@@ -45,8 +46,8 @@ public class FlavoredClient implements ClientModInitializer {
 
         BlockEntityRendererFactories.register(FlavoredBlockEntities.RANGE_BLOCK_ENTITY, RangeBlockEntityRenderer::new);
 
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, FlavoredBlocks.ANCIENT_SIGN_TEXTURE));
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, FlavoredBlocks.ANCIENT_HANGING_SIGN_TEXTURE));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, FlavoredBlocks.ANCIENT_SIGN.getTexture()));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE, FlavoredBlocks.ANCIENT_HANGING_SIGN.getTexture()));
 
         TerraformBoatClientHelper.registerModelLayers(new Identifier(Flavored.MOD_ID, "ancient"), false);
 

@@ -43,7 +43,7 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
     private static final int OUTPUT_SLOT = 5;
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 144;
+    private int maxProgress = 160;
     private int fuelTime = 0;
     private int maxFuelTime = 0;
     private final DefaultedList<ItemStack> inventory =
@@ -87,6 +87,7 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
             public int size() {
                 return 6;
             }
+
         };
     }
 
@@ -105,6 +106,8 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("oven.progress", progress);
+        nbt.putInt("oven.fuelTime", fuelTime);
+        nbt.putInt("oven.maxFuelTime", maxFuelTime);
     }
 
     @Override
@@ -112,6 +115,8 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("oven.progress");
+        fuelTime = nbt.getInt("oven.fuelTime");
+        maxFuelTime = nbt.getInt("oven.maxFuelTime");
     }
 
     @Nullable
@@ -124,12 +129,10 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
     public void tick(World world, BlockPos pos, BlockState state, OvenBlockEntity entity) {
         if(isConsumingFuel(entity)) {
             entity.fuelTime--;
+            state = (BlockState)state.with(OvenBlock.LIT, isConsumingFuel(entity));
+            world.setBlockState(pos, state, 3);
+
         }
-        state = (BlockState)state.with(OvenBlock.LIT, isConsumingFuel(entity));
-        world.setBlockState(pos, state);
-
-
-
         if(hasRecipe()) {
             if(hasFuelInFuelSlot(entity) && !isConsumingFuel(entity)) {
 
@@ -139,6 +142,7 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
                 entity.progress++;
                 if(entity.progress > entity.maxProgress) {
                     craftItem();
+                    entity.resetProgress();
                 }
             }
         } else {
@@ -208,8 +212,8 @@ public class OvenBlockEntity extends BlockEntity implements NamedScreenHandlerFa
     }
 
     private void consumeFuel() {
-        if(!getStack(FUEL_SLOT).isEmpty()) {
-            this.fuelTime = FuelRegistry.INSTANCE.get(this.removeStack(FUEL_SLOT, 1).getItem());
+        if(!getStack(0).isEmpty()) {
+            this.fuelTime = FuelRegistry.INSTANCE.get(this.removeStack(0, 1).getItem());
             this.maxFuelTime = this.fuelTime;
         }
     }

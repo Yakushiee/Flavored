@@ -4,7 +4,7 @@
 		"0": "flavored:block/crate",
 		"1": "flavored:block/crate_top",
 		"2": "flavored:block/garlics",
-		"3": "flavored:block/crate_sweet_berry_top",
+		"3": "flavored:block/crate_glow_berry_top",
 		"particle": "flavored:block/crate"
 	},
 	"elements": [

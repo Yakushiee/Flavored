@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
 	"id": "flavored",
-	"version": "0.0.2 - 1.20.2",
+	"version": "1.0.0 - 1.20.2",
 	"name": "Flavored",
-	"description": "Food mod.",
+	"description": "A culinary mod that expands on Minecraft's food features, while keeping the vanilla feel!",
 	"authors": [
 		"CodenamedSuper"
 	],

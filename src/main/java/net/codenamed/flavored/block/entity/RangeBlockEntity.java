@@ -1,5 +1,7 @@
 package net.codenamed.flavored.block.entity;
 
+import net.codenamed.flavored.block.custom.OvenBlock;
+import net.codenamed.flavored.block.custom.RangeBlock;
 import net.codenamed.flavored.registry.FlavoredBlockEntities;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.BlockState;
@@ -176,7 +178,20 @@ public class RangeBlockEntity extends BlockEntity implements NamedScreenHandlerF
     public void tick(World world, BlockPos pos, BlockState state, RangeBlockEntity entity) {
         if(isConsumingFuel(entity)) {
             entity.fuelTime--;
+            state = (BlockState)state.with(RangeBlock.LIT, isConsumingFuel(entity));
+            world.setBlockState(pos, state, 3);
+
         }
+        if ( getStack(OIL_SLOT).isEmpty()) {
+            state = (BlockState) state.with(RangeBlock.OIL, false);
+            world.setBlockState(pos, state, 3);
+        }
+        else {
+            state = (BlockState) state.with(RangeBlock.OIL, true);
+            world.setBlockState(pos, state, 3);
+        }
+
+
 
         if(hasRecipe()) {
             if(hasFuelInFuelSlot(entity) && !isConsumingFuel(entity)) {
@@ -186,6 +201,7 @@ public class RangeBlockEntity extends BlockEntity implements NamedScreenHandlerF
                 entity.progress++;
                 if(entity.progress > entity.maxProgress) {
                     craftItem();
+                    entity.resetProgress();
                 }
             }
         } else {

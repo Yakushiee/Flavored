@@ -28,10 +28,6 @@ public class RosemaryBushBlock extends SweetBerryBushBlock {
     }
 
 
-    @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-
-    }
 
     @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {

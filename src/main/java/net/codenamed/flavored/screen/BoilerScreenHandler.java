@@ -1,6 +1,7 @@
 package net.codenamed.flavored.screen;
 
 
+import net.codenamed.flavored.block.custom.BoilerBlock;
 import net.codenamed.flavored.block.entity.BoilerBlockEntity;
 import net.codenamed.flavored.registry.FlavoredScreenHandlers;
 import net.codenamed.flavored.slot.FlavoredResultSlot;
@@ -67,7 +68,8 @@ public class BoilerScreenHandler extends ScreenHandler {
     }
 
     public int getScaledWaterProgress() {
-        return this.blockEntity.getLiquid();
+
+        return this.propertyDelegate.get(2);
     }
 
     @Override
@@ -101,8 +103,7 @@ public class BoilerScreenHandler extends ScreenHandler {
     }
 
     public  boolean hasWater() {
-        System.out.println(blockEntity.getLiquid());
-        return blockEntity.getLiquid() > 0;
+        return this.propertyDelegate.get(2) > 0;
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {

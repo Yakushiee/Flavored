@@ -16,11 +16,6 @@ public class FlavoredFermentingSlot extends Slot {
         return FlavoredFermentingSlot.isFermenting(stack);
     }
 
-    @Override
-    public int getMaxItemCount(ItemStack stack) {
-        return FlavoredFermentingSlot.isFermenting(stack) ? 1 : super.getMaxItemCount(stack);
-    }
-
     public static boolean isFermenting(ItemStack stack) {
         return stack.isOf(Items.SUGAR) || stack.isOf(Items.GLOW_LICHEN) || stack.isOf(Items.BROWN_MUSHROOM) || stack.isOf(Items.RED_MUSHROOM) || stack.isOf(Items.WARPED_FUNGUS) ||stack.isOf(Items.CRIMSON_FUNGUS);
     }

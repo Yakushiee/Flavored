@@ -2,6 +2,7 @@ package net.codenamed.flavored.screen;
 
 
 import net.codenamed.flavored.registry.FlavoredScreenHandlers;
+import net.codenamed.flavored.slot.FlavoredOilSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -34,7 +35,7 @@ public class RangeScreenHandler extends ScreenHandler {
 
         //
         this.addSlot(new FlavoredFuelSlot(inventory, 0, 45, 54));
-        this.addSlot(new Slot(inventory, 1, 19, 54));
+        this.addSlot(new FlavoredOilSlot(inventory, 1, 19, 54));
         this.addSlot(new Slot(inventory, 2, 19, 19));
         this.addSlot(new Slot(inventory, 3, 37, 19));
         this.addSlot(new Slot(inventory, 4, 55, 19));

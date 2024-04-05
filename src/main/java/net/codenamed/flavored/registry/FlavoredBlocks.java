@@ -5,6 +5,7 @@ import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
+import net.codenamed.flavored.helper.WoodRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -24,7 +25,6 @@ import net.codenamed.flavored.block.custom.*;
 import net.codenamed.flavored.world.tree.AncientSaplingGenerator;
 
 public class FlavoredBlocks {
-
 
     public static final Block ANCIENT_LOG = registerBlock("ancient_log",
             new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)));
@@ -64,22 +64,13 @@ public class FlavoredBlocks {
     public static final Block ANCIENT_PRESSURE_PLATE = registerBlock("ancient_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), BlockSetType.OAK));
 
-    public static final Identifier ANCIENT_SIGN_TEXTURE = new Identifier(Flavored.MOD_ID, "entity/signs/ancient");
-    public static final Identifier ANCIENT_HANGING_SIGN_TEXTURE = new Identifier(Flavored.MOD_ID, "entity/signs/hanging/ancient");
-    public static final Identifier ANCIENT_HANGING_GUI_SIGN_TEXTURE = new Identifier(Flavored.MOD_ID, "textures/gui/hanging_signs/ancient");
-
-    public static final Block STANDING_ANCIENT_SIGN = Registry.register(Registries.BLOCK, new Identifier(Flavored.MOD_ID, "ancient_standing_sign"),
-            new TerraformSignBlock(ANCIENT_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_SIGN)));
-    public static final Block WALL_ANCIENT_SIGN = Registry.register(Registries.BLOCK, new Identifier(Flavored.MOD_ID, "ancient_wall_sign"),
-            new TerraformWallSignBlock(ANCIENT_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_WALL_SIGN)));
-    public static final Block HANGING_ANCIENT_SIGN = Registry.register(Registries.BLOCK, new Identifier(Flavored.MOD_ID, "ancient_hanging_sign"),
-            new TerraformHangingSignBlock(ANCIENT_HANGING_SIGN_TEXTURE, ANCIENT_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_HANGING_SIGN)));
-    public static final Block WALL_HANGING_ANCIENT_SIGN = Registry.register(Registries.BLOCK, new Identifier(Flavored.MOD_ID, "ancient_wall_hanging_sign"),
-            new TerraformWallHangingSignBlock(ANCIENT_HANGING_SIGN_TEXTURE, ANCIENT_HANGING_GUI_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_WALL_HANGING_SIGN)));
-
-    public static final BlockFamily ANCIENT_FAMILY = BlockFamilies.register(FlavoredBlocks.ANCIENT_PLANKS)
-            .sign(FlavoredBlocks.STANDING_ANCIENT_SIGN, FlavoredBlocks.WALL_ANCIENT_SIGN)
-            .group("wooden").unlockCriterionName("has_planks").build();
+    static final Identifier ANCIENT_SIGN_TEXTURE = Identifier.of(Flavored.MOD_ID, "entity/signs/ancient");
+    public static  TerraformSignBlock  ANCIENT_SIGN = WoodRegistry.register("ancient_sign", new TerraformSignBlock(ANCIENT_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_SIGN)));
+    public static  TerraformWallSignBlock ANCIENT_WALL_SIGN = WoodRegistry.register("ancient_wall_sign", new TerraformWallSignBlock(ANCIENT_SIGN_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_WALL_SIGN).dropsLike(ANCIENT_SIGN)));
+    static final Identifier ANCIENT_HANGING_SIGN_TEXTURE = Identifier.of(Flavored.MOD_ID, "entity/signs/hanging/ancient");
+    static final Identifier ANCIENT_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Flavored.MOD_ID, "textures/gui/hanging_signs/ancient");
+    public static TerraformHangingSignBlock ANCIENT_HANGING_SIGN = WoodRegistry.register("ancient_hanging_sign", new TerraformHangingSignBlock(ANCIENT_HANGING_SIGN_TEXTURE, ANCIENT_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_HANGING_SIGN)));
+    public static TerraformWallHangingSignBlock ANCIENT_WALL_HANGING_SIGN = WoodRegistry.register("ancient_wall_hanging_sign", new TerraformWallHangingSignBlock(ANCIENT_HANGING_SIGN_TEXTURE, ANCIENT_HANGING_SIGN_GUI_TEXTURE, FabricBlockSettings.copyOf(Blocks.OAK_WALL_HANGING_SIGN).dropsLike(ANCIENT_HANGING_SIGN)));
 
     public static final Block ANCIENT_LEAVES = registerBlock("ancient_leaves",
             new LeavesBlock(FabricBlockSettings.copyOf(Blocks.AZALEA_LEAVES)));
@@ -122,6 +113,12 @@ public class FlavoredBlocks {
 
     public static final Block BOILER = registerBlock("boiler",
             new BoilerBlock(FabricBlockSettings.copyOf(Blocks.CAULDRON)));
+
+    public static final Block WILD_SPINACH = registerBlock("wild_spinach",
+            new Block(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
+
+    public static final Block WILD_GARLIC = registerBlock("wild_garlic",
+            new Block(FabricBlockSettings.copyOf(Blocks.SWEET_BERRY_BUSH)));
 
 
 
@@ -188,42 +185,6 @@ public class FlavoredBlocks {
 
 
     public static Block CRATE = null;
-
-    public static Block CARROT_CRATE = registerBlock("carrot_crate",
-                                         new CrateBlock(false, Items.CARROT, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block CHORUS_CRATE = registerBlock("chorus_crate",
-                                         new CrateBlock(false, Items.CHORUS_FRUIT, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block APPLE_CRATE = registerBlock("apple_crate",
-                                        new CrateBlock(false, Items.APPLE, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block POTATO_CRATE = registerBlock("potato_crate",
-                                         new CrateBlock(false, Items.POTATO, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block BEETROOT_CRATE = registerBlock("beetroot_crate",
-                                           new CrateBlock(false, Items.BEETROOT, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block FIG_CRATE = registerBlock("fig_crate",
-                                      new CrateBlock(false, FlavoredItems.FIG, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block SPINACH_CRATE = registerBlock("spinach_crate",
-                                          new CrateBlock(false, FlavoredItems.SPINACH, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block  GLOW_BERRY_CRATE = registerBlock("glow_berry_crate",
-                                             new CrateBlock(false, Items.GLOW_BERRIES, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block  SWEET_BERRY_CRATE = registerBlock("sweet_berry_crate",
-                                              new CrateBlock(false, Items.SWEET_BERRIES, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block ROSEMARY_CRATE = registerBlock("rosemary_crate",
-                                           new CrateBlock(false, FlavoredItems.ROSEMARY, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-   public static Block GARLIC_CRATE = registerBlock("garlic_crate",
-                                         new CrateBlock(false, FlavoredItems.GARLIC, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
-
-    public static Block TOMATO_CRATE = registerBlock("tomato_crate",
-                                         new CrateBlock(false, FlavoredItems.TOMATO, FabricBlockSettings.copyOf(Blocks.COMPOSTER)));
 
 
 

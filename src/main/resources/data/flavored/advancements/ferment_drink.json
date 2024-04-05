@@ -1,31 +1,27 @@
 {
+  "parent": "minecraft:husbandry/plant_seed",
+
   "display": {
     "icon": {
       "item": "flavored:sweet_berry_cocktail"
     },
-    "title": "Patience is the fuel",
-    "description": "Ferment your first drink",
-    "background": "minecraft:textures/block/haybale_side",
+    "title": "Patience is the Fuel",
+    "description": "Obtain a fermented item",
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": true
+    "announce_to_chat": true
   },
   "criteria": {
     "requirement": {
-      "trigger": "minecraft:recipe_crafted",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "player": {},
-        "recipe_id": "flavored:sweet_berry_cocktail",
-        "ingredients": [
-          {}
+        "items": [
+          {
+            "tag": "flavored:fermented"
+
+          }
         ]
       }
     }
-  },
-  "requirements": [
-    [
-      ""
-    ]
-  ]
+  }
 }

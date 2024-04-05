@@ -1,0 +1,54 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "flavored:block/garlic_bread",
+		"particle": "flavored:block/garlic_bread"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 8],
+			"to": [8, 3, 13],
+			"faces": {
+				"north": {"uv": [12, 6.5, 14.5, 8], "texture": "#0"},
+				"east": {"uv": [1.5, 6.5, 6.5, 8], "texture": "#0"},
+				"south": {"uv": [1.5, 6.5, 4, 8], "texture": "#0"},
+				"west": {"uv": [4, 6.5, 6.5, 8], "texture": "#0"},
+				"up": {"uv": [1.5, 3, 4, 5.5], "texture": "#0"},
+				"down": {"uv": [9.5, 9.5, 12, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 0, 3],
+			"to": [13, 3, 8],
+			"faces": {
+				"north": {"uv": [1.5, 6.5, 4, 8], "texture": "#0"},
+				"east": {"uv": [1.5, 6.5, 6.5, 8], "texture": "#0"},
+				"south": {"uv": [1.5, 6.5, 6.5, 8], "texture": "#0"},
+				"west": {"uv": [9.5, 6.5, 12, 8], "texture": "#0"},
+				"up": {"uv": [4, 0.5, 6.5, 3], "texture": "#0"},
+				"down": {"uv": [12, 12, 14.5, 14.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 0, 8],
+			"to": [13, 3, 13],
+			"faces": {
+				"north": {"uv": [1.5, 6.5, 6.5, 8], "texture": "#0"},
+				"east": {"uv": [1.5, 6.5, 4, 8], "texture": "#0"},
+				"south": {"uv": [4, 6.5, 6.5, 8], "texture": "#0"},
+				"west": {"uv": [1.5, 6.5, 6.5, 8], "texture": "#0"},
+				"up": {"uv": [4, 3, 6.5, 5.5], "texture": "#0"},
+				"down": {"uv": [12, 9.5, 14.5, 12], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

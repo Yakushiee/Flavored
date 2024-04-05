@@ -11,6 +11,7 @@ import net.codenamed.flavored.screen.OvenScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -54,6 +55,8 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
     private int progress = 0;
     private  int water = 0;
 
+    private  Boolean lit = false;
+
     private int maxProgress = 120;
 
     public BoilerBlockEntity(BlockPos pos, BlockState state) {
@@ -64,6 +67,8 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
                 return switch (index) {
                     case 0 -> BoilerBlockEntity.this.progress;
                     case 1 -> BoilerBlockEntity.this.maxProgress;
+                    case 2 -> BoilerBlockEntity.this.water;
+
                     default -> 0;
                 };
             }
@@ -73,6 +78,8 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
                 switch (index) {
                     case 0 -> BoilerBlockEntity.this.progress = value;
                     case 1 -> BoilerBlockEntity.this.maxProgress = value;
+                    case 2 -> BoilerBlockEntity.this.water = value;
+
                 }
             }
 
@@ -138,7 +145,7 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
         world.setBlockState(pos, state);
 
         if(isOutputSlotEmptyOrReceivable()) {
-            if(this.hasRecipe()) {
+            if(this.hasRecipe(state)) {
                 this.increaseCraftProgress();
                 markDirty(world, pos, state);
 
@@ -190,10 +197,11 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
         progress += 1;
     }
 
-    private boolean hasRecipe() {
+    private boolean hasRecipe(BlockState state) {
         Optional<RecipeEntry<BoilerRecipe>> recipe = getCurrentRecipe();
 
-        return this.water > 0 && this.getStack(BOWL_SLOT).getItem() == Items.BOWL && recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+        return this.water > 0  && (world.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK || world.getBlockState(pos.down()).getBlock() == Blocks.FIRE || world.getBlockState(pos.down()).getBlock() == Blocks.CAMPFIRE || world.getBlockState(pos.down()).getBlock() == Blocks.SOUL_FIRE || world.getBlockState(pos.down()).getBlock() == Blocks.SOUL_CAMPFIRE || world.getBlockState(pos.down()).getBlock() == Blocks.LAVA || world.getBlockState(pos.down()).getBlock() == Blocks.LAVA_CAULDRON)
+                && this.getStack(BOWL_SLOT).getItem() == Items.BOWL && recipe.isPresent()
                 && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
     }
 
@@ -210,9 +218,6 @@ public class BoilerBlockEntity extends BlockEntity implements ExtendedScreenHand
         return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
     }
 
-    private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
-    }
 
     private boolean isOutputSlotEmptyOrReceivable() {
         return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();

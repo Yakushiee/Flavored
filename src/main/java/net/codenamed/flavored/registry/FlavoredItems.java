@@ -1,6 +1,7 @@
 package net.codenamed.flavored.registry;
 
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
+import net.codenamed.flavored.helper.WoodRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.*;
 import net.codenamed.flavored.Flavored;
@@ -10,6 +11,8 @@ import net.minecraft.util.Identifier;
 import net.codenamed.flavored.item.custom.*;
 
 public class FlavoredItems {
+
+
 
     public static final Item TOMATO = registerItem("tomato",
             new Item(new FabricItemSettings().food(FlavoredFoodComponents.TOMATO)));
@@ -65,11 +68,8 @@ public class FlavoredItems {
     public static final Item CARBONARA = registerItem("carbonara",
             new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.CARBONARA).maxCount(1)));
 
-
-    public static final Item ANCIENT_SIGN = registerItem("ancient_sign",
-            new SignItem(new FabricItemSettings().maxCount(16), FlavoredBlocks.STANDING_ANCIENT_SIGN, FlavoredBlocks.WALL_ANCIENT_SIGN));
-    public static final Item HANGING_ANCIENT_SIGN = registerItem("ancient_hanging_sign",
-            new HangingSignItem(FlavoredBlocks.HANGING_ANCIENT_SIGN, FlavoredBlocks.WALL_HANGING_ANCIENT_SIGN, new FabricItemSettings().maxCount(16)));
+    public static SignItem  ANCIENT_SIGN = WoodRegistry.register("ancient_sign", new SignItem(new Item.Settings().maxCount(16), FlavoredBlocks.ANCIENT_SIGN, FlavoredBlocks.ANCIENT_WALL_SIGN));
+    public static HangingSignItem  ANCIENT_HANGING_SIGN = WoodRegistry.register("ancient_hanging_sign", new HangingSignItem(FlavoredBlocks.ANCIENT_HANGING_SIGN, FlavoredBlocks.ANCIENT_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
     public static final Item MASHED_POTATOES = registerItem("mashed_potatoes",
             new DishItem(new FabricItemSettings().food(FlavoredFoodComponents.MASHED_POTATOES).maxCount(16)));
@@ -175,7 +175,9 @@ public class FlavoredItems {
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(Flavored.MOD_ID, name), item);
+
     }
+
 
     public static void registerModItems() {
         Flavored.LOGGER.info("Registering Mod Items for " + Flavored.MOD_ID);

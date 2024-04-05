@@ -1,31 +1,28 @@
 {
+  "parent": "minecraft:husbandry/plant_seed",
+
   "display": {
     "icon": {
-      "item": "flavored:pizza"
+      "item": "miencraft:bread"
     },
-    "title": "The delicacies of the mud furnace",
-    "description": "Bake your first dish",
-    "background": "minecraft:textures/block/haybale_side",
+    "title": "(Furnacex2)^2",
+    "description": "Obtain a baked food",
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": true
+    "announce_to_chat": true
   },
   "criteria": {
     "requirement": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "player": {},
-        "recipe_id": "flavored:sweet_berry_cocktail",
-        "ingredients": [
-          {}
+        "items": [
+          {
+            "tag": "flavored:baked"
+
+          }
         ]
       }
     }
-  },
-  "requirements": [
-    [
-      ""
-    ]
-  ]
+  }
 }
+

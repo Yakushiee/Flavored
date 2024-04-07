@@ -1,5 +1,6 @@
 package net.codenamed.flavored.block.custom;
 
+import net.codenamed.flavored.helper.Color;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -15,10 +16,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
+import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +30,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class FermenterBlock extends BlockWithEntity implements BlockEntityProvider {
 
-public  static  final  IntProperty LIQUID = IntProperty.of("liquid", 0, 2);
+public  static  final  IntProperty LIQUID = IntProperty.of("liquid", 0, 3);
+
+public  static  final EnumProperty<Color> COLOR = EnumProperty.of("color", Color.class);
 
     public FermenterBlock(Settings settings) {
         super(settings);
@@ -138,7 +138,7 @@ public  static  final  IntProperty LIQUID = IntProperty.of("liquid", 0, 2);
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{LIQUID, FACING});
+        builder.add(new Property[]{LIQUID, COLOR, FACING});
     }
 
     @Override

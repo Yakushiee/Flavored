@@ -14,6 +14,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "flavored:delicacy_pottery_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
           "name": "flavored:tomato_seeds"
         },
         {

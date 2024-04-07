@@ -1,6 +1,8 @@
 package net.codenamed.flavored.block.entity;
 
 import net.codenamed.flavored.block.custom.FermenterBlock;
+import net.codenamed.flavored.helper.Color;
+import net.codenamed.flavored.item.custom.DrinkItem;
 import net.codenamed.flavored.registry.FlavoredBlockEntities;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -44,7 +46,7 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 768;
+    private int maxProgress = 70;
 
     public FermenterBlockEntity(BlockPos pos, BlockState state) {
         super(FlavoredBlockEntities.FERMENTER_BLOCK_ENTITY, pos, state);
@@ -122,17 +124,24 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
         if(world.isClient()) {
             return;
         }
+        Item i = getStack(OUTPUT_SLOT).getItem();
+
         if(getStack(LIQUID_SLOT).getItem() == Items.WATER_BUCKET) {
-            state = (BlockState)state.with(FermenterBlock.LIQUID, 1);
+            state = (BlockState)state.with(FermenterBlock.LIQUID, 1).with(FermenterBlock.COLOR, Color.none);
 
         }
         else if (getStack(LIQUID_SLOT).getItem() == Items.MILK_BUCKET) {
-            state = (BlockState)state.with(FermenterBlock.LIQUID, 2);
+            state = (BlockState)state.with(FermenterBlock.LIQUID, 2).with(FermenterBlock.COLOR, Color.none);
         }
-        else {
-            state = (BlockState)state.with(FermenterBlock.LIQUID, 0);
+       else if(i instanceof  DrinkItem && !getStack(OUTPUT_SLOT).isEmpty()) {
+            state = (BlockState)state.with(FermenterBlock.LIQUID, 0).with(FermenterBlock.COLOR, Color.valueOf(((DrinkItem) i).COLOR));
 
         }
+        else {
+            state = (BlockState)state.with(FermenterBlock.LIQUID, 0).with(FermenterBlock.COLOR, Color.none);
+
+        }
+
         world.setBlockState(pos, state);
 
         if(isOutputSlotEmptyOrReceivable()) {
@@ -160,11 +169,21 @@ public class FermenterBlockEntity extends BlockEntity implements ExtendedScreenH
     private void craftItem() {
         Optional<RecipeEntry<FermenterRecipe>> recipe = getCurrentRecipe();
 
+
+
         this.removeStack(INPUT_SLOT, 1);
         this.removeStack(FERMENTING_SLOT, 1);
-        this.removeStack(LIQUID_SLOT, 1);
+        if (!getStack(LIQUID_SLOT).isEmpty()) {
+            this.removeStack(LIQUID_SLOT, 1);
+            this.setStack(LIQUID_SLOT, Items.BUCKET.getDefaultStack());
+        }
+        else {
+            this.removeStack(LIQUID_SLOT, 1);
+        }
         this.removeStack(BOTTLE_SLOT, 1);
-        this.setStack(LIQUID_SLOT, Items.BUCKET.getDefaultStack());
+
+
+
 
 
 

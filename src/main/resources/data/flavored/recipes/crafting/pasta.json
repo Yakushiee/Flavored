@@ -6,10 +6,7 @@
       "item": "minecraft:egg"
     },
     {
-      "item": "minecraft:wheat"
-    },
-    {
-      "item": "minecraft:wheat"
+      "item": "flavored:flour"
     }
   ],
   "result": {

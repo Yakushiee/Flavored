@@ -112,11 +112,16 @@
   "block.flavored.ancient_slab": "Ancient Slab",
   "block.flavored.ancient_stairs": "Ancient Stairs",
 
-  "item.flavored.ancient_standing_sign": "Ancient Standing Sign",
-  "item.flavored.ancient_wall_sign": "Ancient Wall Sign",
+  "block.flavored.ancient_standing_sign": "Ancient Standing Sign",
+  "block.flavored.ancient_wall_sign": "Ancient Wall Sign",
+  "block.flavored.ancient_sign": "Ancient Sign",
 
-  "item.flavored.ancient_hanging_sign": "Ancient Hanging Sign",
-  "item.flavored.ancient_wall_hanging_sign": "Ancient Wall Hanging Sign",
+  "item.flavored.ancient_sign": "Ancient Sign",
+
+
+
+  "block.flavored.ancient_hanging_sign": "Ancient Hanging Sign",
+  "block.flavored.ancient_wall_hanging_sign": "Ancient Wall Hanging Sign",
   "block.flavored.ancient_pressure_plate": "Ancient Pressure Plate",
   "block.flavored.ancient_door": "Ancient Door",
   "block.flavored.ancient_trapdoor": "Ancient Trapdoor",
@@ -142,6 +147,7 @@
 
   "item.flavored.fruit_salad": "Fruit Salad",
   "item.flavored.mashed_potatoes": "Mashed Potatoes",
+  "item.flavored.ocean_stew": "Ocean Stew",
   "item.flavored.grilled_vegetables": "Grilled Vegetables",
   "item.flavored.alfredo": "Alfredo",
 

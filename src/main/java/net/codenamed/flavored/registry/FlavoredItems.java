@@ -1,6 +1,7 @@
 package net.codenamed.flavored.registry;
 
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
+import net.codenamed.flavored.helper.Color;
 import net.codenamed.flavored.helper.WoodRegistry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.*;
@@ -39,7 +40,7 @@ public class FlavoredItems {
             new AliasedBlockItem(FlavoredBlocks.ROSEMARY_BUSH, new FabricItemSettings()));
 
     public static final Item OIL = registerItem("oil",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.OIL)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.OIL), Color.oil.asString()));
 
     public static final Item PASTA = registerItem("pasta",
             new Item(new FabricItemSettings()));
@@ -121,33 +122,33 @@ public class FlavoredItems {
             new Item(new FabricItemSettings().food(FlavoredFoodComponents.GLOW_BERRY_MUFFIN)));
 
     public static final Item GLOW_BERRY_COCKTAIL = registerItem("glow_berry_cocktail",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.GLOW_BERRY_COCKTAIL)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.GLOW_BERRY_COCKTAIL), Color.orange.asString()));
 
     public static final Item SWEET_BERRY_COCKTAIL = registerItem("sweet_berry_cocktail",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.SWEET_BERRY_COCKTAIL)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.SWEET_BERRY_COCKTAIL), Color.magenta.asString()));
 
     public static final Item CHORUS_COCKTAIL = registerItem("chorus_cocktail",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.CHORUS_COCKTAIL)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.CHORUS_COCKTAIL), Color.pink.asString()));
 
 
     public static final Item FIG_COCKTAIL = registerItem("fig_cocktail",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.FIG_COCKTAIL)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.FIG_COCKTAIL), Color.red.asString()));
 
     public static final Item HOT_COCOA = registerItem("hot_cocoa",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.HOT_COCOA)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.HOT_COCOA),Color.brown.asString()));
 
     public static final Item TEA = registerItem("tea",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.TEA)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.TEA), Color.green.asString()));
 
 
     public static final Item PUMPKIN_LATTE = registerItem("pumpkin_latte",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.PUMPKIN_LATTE)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.PUMPKIN_LATTE), Color.orange.asString()));
 
     public static final Item CIDER = registerItem("cider",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.CIDER)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.CIDER), Color.yellow.asString()));
 
     public static final Item MALT = registerItem("malt",
-            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.MALT)));
+            new DrinkItem(new FabricItemSettings().food(FlavoredFoodComponents.MALT), Color.wheat.asString()));
 
     public static final Item DELICACY_POTTERY_SHERD = registerItem("delicacy_pottery_sherd",
             new Item(new FabricItemSettings()));

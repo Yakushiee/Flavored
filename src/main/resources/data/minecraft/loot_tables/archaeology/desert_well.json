@@ -16,6 +16,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "flavored:refresh_pottery_sherd",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:brick"
         },
         {

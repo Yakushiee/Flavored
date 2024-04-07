@@ -1,0 +1,18 @@
+{
+  "type": "flavored:fermenting",
+  "ingredients": [
+    {
+      "item": "minecraft:coca_beans"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "output": {
+    "item": "flavored:hot_coca",
+    "count": 1
+  }
+}
